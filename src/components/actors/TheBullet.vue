@@ -1,14 +1,14 @@
 <script setup>
-import { reactive, computed, onMounted } from "vue";
+import { reactive, onMounted } from "vue";
 
 const { bullTop } = reactive({ bullTop: 3 });
 
-const bullTopValue = computed(() => {
+const bullTopValue = () => {
   const tomMovement = setInterval(() => bullTop + 10, 100);
   if (bullTop === 100) {
     clearInterval(tomMovement);
   }
-});
+};
 
 onMounted(() => bullTopValue());
 </script>

@@ -1,7 +1,23 @@
-<script setup></script>
+<script setup>
+import { useMachineGunPositionStore } from "../../stores/machineGunPosition";
+
+const machineGunPosition = useMachineGunPositionStore();
+console.log(machineGunPosition.$state.machineGunLeft);
+window.onkeydown = (event) => {
+  if (event.key === "ArrowLeft") {
+    machineGunPosition.setPosition(-1);
+  } else if (event.key === "ArrowRight") {
+    machineGunPosition.setPosition(1);
+  }
+};
+</script>
 
 <template>
-  <div class="machine-gun">
+  <div
+    class="machine-gun"
+    :style="{ left: machineGunPosition.$state.machineGunLeft + '%' }"
+  >
+    {{ machineGunPosition.$state.machineGunLeft }}
     <div class="barrel"></div>
     <div class="foundation"></div>
   </div>
