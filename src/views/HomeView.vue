@@ -1,9 +1,9 @@
 <script setup>
-import TheWelcome from '@/components/TheWelcome.vue'
+import MainContainer from '../components/containers/MainContainer.vue';
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <MainContainer />
   </main>
 </template>
