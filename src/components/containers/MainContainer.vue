@@ -3,6 +3,20 @@ import { RouterLink } from "vue-router";
 import ControlPanel from "../../components/containers/ControlPanel.vue";
 import TheMachineGun from "../../components/actors/TheMachineGun.vue";
 import TheBullet from "../../components/actors/TheBullet.vue";
+import { useBulletsStore } from "../../stores/bullets.js";
+import { useMachineGunPositionStore } from "../../stores/machineGunPosition";
+
+const bulletsStore = useBulletsStore();
+const machineGunPosition = useMachineGunPositionStore();
+
+window.onkeyup = (event) => {
+  if (event.key === " ") {
+    bulletsStore.addBullet({
+      id: Date.now(),
+      coordinateX: machineGunPosition.$state.machineGunLeft,
+    });
+  }
+};
 </script>
 
 <template>
@@ -10,23 +24,27 @@ import TheBullet from "../../components/actors/TheBullet.vue";
     <div class="main-container_inner-layer">
       <div class="battle-field">
         <TheMachineGun />
-        <TheBullet v-for="item in [3, 4, 5]" />
+        <TheBullet
+          v-for="item in bulletsStore.$state.bullets"
+          :key="item.id"
+          :coordinateX="item.coordinateX"
+        />
       </div>
       <ControlPanel>
-        <img
+        <!-- <img
           alt="Vue logo"
           class="logo"
           src="@/assets/logo.svg"
           width="125"
           height="125"
-        />
+        /> -->
 
-        <div class="wrapper">
+        <!-- <div class="wrapper">
           <nav>
             <RouterLink to="/">Home</RouterLink>
             <RouterLink to="/about">About</RouterLink>
           </nav>
-        </div>
+        </div> -->
       </ControlPanel>
     </div>
   </div>

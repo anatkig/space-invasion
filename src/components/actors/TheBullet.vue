@@ -1,22 +1,29 @@
 <script setup>
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, defineProps } from "vue";
 
-const { bullTop } = reactive({ bullTop: 3 });
+const { coordinateX } = defineProps(["coordinateX"]);
+
+let state = reactive({ bullTop: 60 });
 
 const bullTopValue = () => {
-  const tomMovement = setInterval(() => bullTop + 10, 100);
-  if (bullTop === 100) {
-    clearInterval(tomMovement);
-  }
+  const topMovement = setInterval(() => {
+    state.bullTop += 1;
+
+    if (state.bullTop >= 2000) {
+      clearInterval(topMovement);
+    }
+  }, 100);
 };
 
-onMounted(() => bullTopValue());
+onMounted(() => {
+  bullTopValue();
+});
 </script>
 
 <template>
   <div
     class="bullet"
-    :style="{ bottom: bullTop + '%', left: bullLeft + 'px' }"
+    :style="{ bottom: state.bullTop + 'px', left: coordinateX + '%' }"
   ></div>
 </template>
 
@@ -27,5 +34,8 @@ onMounted(() => bullTopValue());
   height: 15px;
   border-radius: 50%;
   background-color: pink;
+
+  bottom: 60px;
+  transform: translateX(-50%);
 }
 </style>

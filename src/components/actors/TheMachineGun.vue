@@ -2,7 +2,7 @@
 import { useMachineGunPositionStore } from "../../stores/machineGunPosition";
 
 const machineGunPosition = useMachineGunPositionStore();
-console.log(machineGunPosition.$state.machineGunLeft);
+
 window.onkeydown = (event) => {
   if (event.key === "ArrowLeft") {
     machineGunPosition.setPosition(-1);
@@ -29,7 +29,7 @@ window.onkeydown = (event) => {
   position: absolute;
   bottom: 2%;
   left: 50%;
-  transform: translate(-50% 0);
+  transform: translateX(-50%);
 }
 
 .barrel {
