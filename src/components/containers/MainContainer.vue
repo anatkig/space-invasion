@@ -3,17 +3,31 @@ import { RouterLink } from "vue-router";
 import ControlPanel from "../../components/containers/ControlPanel.vue";
 import TheMachineGun from "../../components/actors/TheMachineGun.vue";
 import TheBullet from "../../components/actors/TheBullet.vue";
+import TheInvador from "../../components/actors/TheInvador.vue";
 import { useBulletsStore } from "../../stores/bullets.js";
 import { useMachineGunPositionStore } from "../../stores/machineGunPosition";
+import { useInvadorsStore } from "../../stores/invadors";
 
 const bulletsStore = useBulletsStore();
 const machineGunPosition = useMachineGunPositionStore();
+const invadorsStore = useInvadorsStore();
+
+window.onload = () =>
+  invadorsStore.addInvador({
+    id: Date.now(),
+  });
 
 window.onkeyup = (event) => {
   if (event.key === " ") {
     bulletsStore.addBullet({
       id: Date.now(),
       coordinateX: machineGunPosition.$state.machineGunLeft,
+    });
+  }
+
+  if (event.key === "Enter") {
+    invadorsStore.addInvador({
+      id: Date.now(),
     });
   }
 };
@@ -28,6 +42,10 @@ window.onkeyup = (event) => {
           v-for="item in bulletsStore.$state.bullets"
           :key="item.id"
           :coordinateX="item.coordinateX"
+        />
+        <TheInvador
+          v-for="invador in invadorsStore.$state.invadors"
+          :key="invador.id"
         />
       </div>
       <ControlPanel>

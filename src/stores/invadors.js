@@ -1,0 +1,19 @@
+import { defineStore } from "pinia";
+
+export const useInvadorsStore = defineStore({
+  id: "invadors",
+  state: () => ({
+    invadors: [],
+  }),
+
+  actions: {
+    addInvador(invador) {
+      this.invadors = [...this.invadors, invador];
+    },
+    removeInvador(invadorId) {
+      this.invadors = [
+        ...this.invadors.filter((invador) => invador.id !== invadorId),
+      ];
+    },
+  },
+});

@@ -3,7 +3,7 @@ import { reactive, onMounted, defineProps } from "vue";
 
 const { coordinateX } = defineProps(["coordinateX"]);
 
-let state = reactive({ bullTop: 60 });
+const state = reactive({ bullTop: 60 });
 
 const bullTopValue = () => {
   const topMovement = setInterval(() => {
