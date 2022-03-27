@@ -17,7 +17,6 @@ window.onkeydown = (event) => {
     class="machine-gun"
     :style="{ left: machineGunPosition.$state.machineGunLeft + '%' }"
   >
-    {{ machineGunPosition.$state.machineGunLeft }}
     <div class="barrel"></div>
     <div class="foundation"></div>
   </div>

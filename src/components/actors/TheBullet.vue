@@ -12,7 +12,7 @@ const bullTopValue = () => {
     if (state.bullTop >= 2000) {
       clearInterval(topMovement);
     }
-  }, 100);
+  }, 10);
 };
 
 onMounted(() => {
