@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink } from "vue-router";
+import { computed } from "@vue/reactivity";
 import ControlPanel from "../../components/containers/ControlPanel.vue";
 import TheMachineGun from "../../components/actors/TheMachineGun.vue";
 import TheBullet from "../../components/actors/TheBullet.vue";
@@ -7,6 +8,7 @@ import TheInvador from "../../components/actors/TheInvador.vue";
 import { useBulletsStore } from "../../stores/bullets.js";
 import { useMachineGunPositionStore } from "../../stores/machineGunPosition";
 import { useInvadorsStore } from "../../stores/invadors";
+import { onUpdated } from "vue";
 
 const bulletsStore = useBulletsStore();
 const machineGunPosition = useMachineGunPositionStore();
@@ -22,6 +24,7 @@ window.onkeyup = (event) => {
     bulletsStore.addBullet({
       id: Date.now(),
       coordinateX: machineGunPosition.$state.machineGunLeft,
+      coordinateY: document.querySelector(".battle-field").offsetHeight - 60,
     });
   }
 
@@ -31,6 +34,25 @@ window.onkeyup = (event) => {
     });
   }
 };
+onUpdated(() => {
+  const bullets = computed(() =>
+    Array.from(document.querySelectorAll(".bullet"))
+  );
+  const invadors = computed(() =>
+    Array.from(document.querySelectorAll(".invador"))
+  );
+
+  bullets.value.forEach((bullet) =>
+    invadors.value.forEach((invador) => {
+      if (
+        invador.offsetTop === bullet.offsetTop &&
+        invador.offsetLeft === bullet.offsetLeft
+      ) {
+        bulletsStore.removeBullet(bullet.id);
+      }
+    })
+  );
+});
 </script>
 
 <template>
@@ -42,10 +64,12 @@ window.onkeyup = (event) => {
           v-for="item in bulletsStore.$state.bullets"
           :key="item.id"
           :coordinateX="item.coordinateX"
+          :id="item.id"
         />
         <TheInvador
           v-for="invador in invadorsStore.$state.invadors"
           :key="invador.id"
+          :id="invador.id"
         />
       </div>
       <ControlPanel>

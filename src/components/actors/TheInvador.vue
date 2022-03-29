@@ -1,5 +1,7 @@
 <script setup>
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, computed } from "vue";
+
+const { id } = defineProps(["id"]);
 
 const state = reactive({
   invTop: 0,
@@ -8,11 +10,14 @@ const state = reactive({
 });
 const randomSize = () =>
   (state.randomSize = Math.floor(Math.random() * 30) + 20);
-const randomCoordinateX = () =>
-  (state.randomCoordinateX = Math.floor(
-    Math.random() *
-      (document.querySelector(".battle-field").offsetWidth - state.randomSize)
-  ));
+
+const randomCoordinateX = computed(
+  () =>
+    (state.randomCoordinateX = Math.floor(
+      Math.random() *
+        (document.querySelector(".battle-field").offsetWidth - state.randomSize)
+    ))
+);
 
 const invTopValue = () => {
   const topMovement = setInterval(() => {
@@ -29,18 +34,18 @@ const invTopValue = () => {
 
 onMounted(() => {
   invTopValue();
-  randomCoordinateX();
   randomSize();
 });
 </script>
 
 <template>
   <div
+    :id="id"
     class="invador"
     :style="{
       width: state.randomSize + 'px',
       height: state.randomSize + 'px',
-      left: state.randomCoordinateX + 'px',
+      left: randomCoordinateX + 'px',
       top: state.invTop + 'px',
     }"
   >
