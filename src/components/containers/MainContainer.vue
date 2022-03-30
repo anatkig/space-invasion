@@ -1,10 +1,11 @@
 <script setup>
 import { RouterLink } from "vue-router";
-import { computed } from "@vue/reactivity";
+import { computed, ref } from "@vue/reactivity";
 import ControlPanel from "../../components/containers/ControlPanel.vue";
 import TheMachineGun from "../../components/actors/TheMachineGun.vue";
 import TheBullet from "../../components/actors/TheBullet.vue";
 import TheInvador from "../../components/actors/TheInvador.vue";
+import TheModal from "../containers/TheModal.vue";
 import { useBulletsStore } from "../../stores/bullets.js";
 import { useMachineGunPositionStore } from "../../stores/machineGunPosition";
 import { useInvadorsStore } from "../../stores/invadors";
@@ -13,16 +14,12 @@ const bulletsStore = useBulletsStore();
 const machineGunPosition = useMachineGunPositionStore();
 const invadorsStore = useInvadorsStore();
 
-window.onkeyup = (event) => {
-  if (event.key === " ") {
-    bulletsStore.addBullet({
-      id: Date.now(),
-      coordinateX: machineGunPosition.$state.machineGunLeft,
-      coordinateY: document.querySelector(".battle-field").offsetHeight - 60,
-    });
-  }
+const modal = ref(true);
+const modalText = ref("Start the Game!");
 
-  if (event.key === "Enter") {
+const invadorsAttack = () => {
+  modal.value = !modal.value;
+  if (modal.value === false) {
     const invadorCycle = setInterval(() => {
       invadorsStore.addInvador({
         id: Date.now(),
@@ -37,11 +34,26 @@ window.onkeyup = (event) => {
             invador.offsetHeight + invador.offsetTop ===
             document.querySelector(".battle-field").offsetHeight
           );
-        })
+        }) ||
+        modal.value === true
       ) {
         clearInterval(invadorCycle);
       }
     }, 1000);
+  }
+};
+
+window.onkeyup = (event) => {
+  if (event.key === " ") {
+    bulletsStore.addBullet({
+      id: Date.now(),
+      coordinateX: machineGunPosition.$state.machineGunLeft,
+      coordinateY: document.querySelector(".battle-field").offsetHeight - 60,
+    });
+  }
+
+  if (event.key === "Enter") {
+    invadorsAttack();
   }
 };
 </script>
@@ -50,6 +62,11 @@ window.onkeyup = (event) => {
   <div class="main-container">
     <div class="main-container_inner-layer">
       <div class="battle-field">
+        <TheModal
+          v-show="modal"
+          :text="modalText"
+          @flip-modal="() => invadorsAttack()"
+        />
         <TheMachineGun />
         <TheBullet
           v-for="item in bulletsStore.$state.bullets"
