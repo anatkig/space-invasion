@@ -3,9 +3,13 @@ import { onMounted, reactive } from "vue";
 import bulletLogic from "../../logic/bulletLogic.js";
 import { useBulletsStore } from "../../stores/bullets.js";
 import { useInvadersStore } from "../../stores/invaders.js";
+import { useBulletsLeftStore } from "../../stores/bulletsLeft";
+import { useInvadersDestroyedStore } from "../../stores/invadersDestroyed.js";
 
 const bulletsStore = useBulletsStore();
 const invadersStore = useInvadersStore();
+const bulletsLeft = useBulletsLeftStore();
+const invadersDestroyed = useInvadersDestroyedStore();
 
 const { coordinateX, id } = defineProps(["coordinateX", "id"]);
 const bullTop = reactive({
@@ -13,7 +17,13 @@ const bullTop = reactive({
 });
 
 onMounted(() => {
-  bulletLogic(bulletsStore, invadersStore, bullTop);
+  bulletLogic(
+    bulletsStore,
+    invadersStore,
+    bullTop,
+    bulletsLeft,
+    invadersDestroyed
+  );
 });
 </script>
 

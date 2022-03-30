@@ -1,6 +1,12 @@
 import { computed } from "vue";
 
-const bulletLogic = (bulletsStore, invadersStore, bullTop) => {
+const bulletLogic = (
+  bulletsStore,
+  invadersStore,
+  bullTop,
+  bulletsLeft,
+  invadersDestroyed
+) => {
   const topMovement = setInterval(() => {
     bullTop.bullTop -= 1;
     const bullets = computed(() =>
@@ -20,6 +26,8 @@ const bulletLogic = (bulletsStore, invadersStore, bullTop) => {
         ) {
           bulletsStore.removeBullet(bullet.id);
           invadersStore.removeInvader(invader.id);
+          bulletsLeft.subtractBulletsLeft(1);
+          invadersDestroyed.addInvadersDestroyed(1);
         }
       })
     );
