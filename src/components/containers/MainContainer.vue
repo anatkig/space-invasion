@@ -9,6 +9,7 @@ import TheModal from "../containers/TheModal.vue";
 import { useBulletsStore } from "../../stores/bullets.js";
 import { useMachineGunPositionStore } from "../../stores/machineGunPosition";
 import { useInvadorsStore } from "../../stores/invadors";
+import invadorsAttack from "../../logic/invadorsAttack.js";
 
 const bulletsStore = useBulletsStore();
 const machineGunPosition = useMachineGunPositionStore();
@@ -17,31 +18,36 @@ const invadorsStore = useInvadorsStore();
 const modal = ref(true);
 const modalText = ref("Start the Game!");
 
-const invadorsAttack = () => {
+const invadorsAttackAndFlipModal = () => {
   modal.value = !modal.value;
-  if (modal.value === false) {
-    const invadorCycle = setInterval(() => {
-      invadorsStore.addInvador({
-        id: Date.now(),
-      });
-      const invadors = computed(() =>
-        Array.from(document.querySelectorAll(".invador"))
-      );
-
-      if (
-        invadors.value.some((invador) => {
-          return (
-            invador.offsetHeight + invador.offsetTop ===
-            document.querySelector(".battle-field").offsetHeight
-          );
-        }) ||
-        modal.value === true
-      ) {
-        clearInterval(invadorCycle);
-      }
-    }, 1000);
-  }
+  !modal.value && invadorsAttack(invadorsStore);
 };
+
+// const invadorsAttack = () => {
+//   modal.value = !modal.value;
+//   if (modal.value === false) {
+//     const invadorCycle = setInterval(() => {
+//       invadorsStore.addInvador({
+//         id: Date.now(),
+//       });
+//       const invadors = computed(() =>
+//         Array.from(document.querySelectorAll(".invador"))
+//       );
+
+//       if (
+//         invadors.value.some((invador) => {
+//           return (
+//             invador.offsetHeight + invador.offsetTop ===
+//             document.querySelector(".battle-field").offsetHeight
+//           );
+//         }) ||
+//         modal.value === true
+//       ) {
+//         clearInterval(invadorCycle);
+//       }
+//     }, 1000);
+//   }
+// };
 
 window.onkeyup = (event) => {
   if (event.key === " ") {
@@ -53,7 +59,7 @@ window.onkeyup = (event) => {
   }
 
   if (event.key === "Enter") {
-    invadorsAttack();
+    invadorsAttackAndFlipModal();
   }
 };
 </script>
@@ -65,7 +71,7 @@ window.onkeyup = (event) => {
         <TheModal
           v-show="modal"
           :text="modalText"
-          @flip-modal="() => invadorsAttack()"
+          @flip-modal="invadorsAttackAndFlipModal"
         />
         <TheMachineGun />
         <TheBullet
