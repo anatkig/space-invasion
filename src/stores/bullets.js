@@ -12,7 +12,9 @@ export const useBulletsStore = defineStore({
     },
     removeBullet(bulletId) {
       this.bullets = [
-        ...this.bullets.filter((bullet) => bullet.id !== bulletId),
+        ...Array.from(this.bullets).filter(
+          (bullet) => bullet.id !== Number(bulletId)
+        ),
       ];
     },
   },

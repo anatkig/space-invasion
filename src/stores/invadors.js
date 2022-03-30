@@ -11,7 +11,6 @@ export const useInvadorsStore = defineStore({
       this.invadors = [...this.invadors, invador];
     },
     removeInvador(invadorId) {
-      console.log(this.invadors);
       this.invadors = [
         ...Array.from(this.invadors).filter(
           (invador) => invador.id !== Number(invadorId)

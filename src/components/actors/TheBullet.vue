@@ -25,11 +25,10 @@ const bullTopValue = () => {
     bullets.value.forEach((bullet) =>
       invadors.value.forEach((invador) => {
         if (
-          bullet.offsetTop >= invador.offsetTop
-          // bullet.offsetTop >= invador.offsetTop &&
-          // bullet.offsetTop <= invador.offsetTop + invador.offsetHeight &&
-          // bullet.offsetLeft >= invador.offsetLeft &&
-          // bullet.offsetLerft <= invador.offsetLeft + invador.offsetHeight
+          bullet.offsetTop >= invador.offsetTop &&
+          bullet.offsetTop <= invador.offsetTop + invador.offsetHeight &&
+          bullet.offsetLeft >= invador.offsetLeft &&
+          bullet.offsetLeft <= invador.offsetLeft + invador.offsetWidth
         ) {
           bulletsStore.removeBullet(bullet.id);
           invadorsStore.removeInvador(invador.id);
@@ -37,8 +36,9 @@ const bullTopValue = () => {
       })
     );
 
-    if (state.bullTop >= 2000) {
+    if (state.bullTop <= -10) {
       clearInterval(topMovement);
+      bulletsStore.removeBullet(bullets.value[0].id);
     }
   }, 10);
 };
