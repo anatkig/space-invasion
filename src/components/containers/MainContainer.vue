@@ -8,16 +8,10 @@ import TheInvador from "../../components/actors/TheInvador.vue";
 import { useBulletsStore } from "../../stores/bullets.js";
 import { useMachineGunPositionStore } from "../../stores/machineGunPosition";
 import { useInvadorsStore } from "../../stores/invadors";
-import { onUpdated } from "vue";
 
 const bulletsStore = useBulletsStore();
 const machineGunPosition = useMachineGunPositionStore();
 const invadorsStore = useInvadorsStore();
-
-window.onload = () =>
-  invadorsStore.addInvador({
-    id: Date.now(),
-  });
 
 window.onkeyup = (event) => {
   if (event.key === " ") {
@@ -29,30 +23,27 @@ window.onkeyup = (event) => {
   }
 
   if (event.key === "Enter") {
-    invadorsStore.addInvador({
-      id: Date.now(),
-    });
+    const invadorCycle = setInterval(() => {
+      invadorsStore.addInvador({
+        id: Date.now(),
+      });
+      const invadors = computed(() =>
+        Array.from(document.querySelectorAll(".invador"))
+      );
+
+      if (
+        invadors.value.some((invador) => {
+          return (
+            invador.offsetHeight + invador.offsetTop ===
+            document.querySelector(".battle-field").offsetHeight
+          );
+        })
+      ) {
+        clearInterval(invadorCycle);
+      }
+    }, 1000);
   }
 };
-onUpdated(() => {
-  const bullets = computed(() =>
-    Array.from(document.querySelectorAll(".bullet"))
-  );
-  const invadors = computed(() =>
-    Array.from(document.querySelectorAll(".invador"))
-  );
-
-  bullets.value.forEach((bullet) =>
-    invadors.value.forEach((invador) => {
-      if (
-        invador.offsetTop === bullet.offsetTop &&
-        invador.offsetLeft === bullet.offsetLeft
-      ) {
-        bulletsStore.removeBullet(bullet.id);
-      }
-    })
-  );
-});
 </script>
 
 <template>

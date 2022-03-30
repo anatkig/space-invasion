@@ -38,7 +38,7 @@ const bullTopValue = () => {
 
     if (state.bullTop <= -10) {
       clearInterval(topMovement);
-      bulletsStore.removeBullet(bullets.value[0].id);
+      bullets.value.length && bulletsStore.removeBullet(bullets.value[0].id);
     }
   }, 10);
 };
