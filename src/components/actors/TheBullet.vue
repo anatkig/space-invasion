@@ -2,10 +2,10 @@
 import { onMounted, reactive } from "vue";
 import bulletLogic from "../../logic/bulletLogic.js";
 import { useBulletsStore } from "../../stores/bullets.js";
-import { useInvadorsStore } from "../../stores/invadors.js";
+import { useInvadersStore } from "../../stores/invaders.js";
 
 const bulletsStore = useBulletsStore();
-const invadorsStore = useInvadorsStore();
+const invadersStore = useInvadersStore();
 
 const { coordinateX, id } = defineProps(["coordinateX", "id"]);
 const bullTop = reactive({
@@ -13,7 +13,7 @@ const bullTop = reactive({
 });
 
 onMounted(() => {
-  bulletLogic(bulletsStore, invadorsStore, bullTop);
+  bulletLogic(bulletsStore, invadersStore, bullTop);
 });
 </script>
 

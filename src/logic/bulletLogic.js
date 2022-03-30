@@ -1,25 +1,25 @@
 import { computed } from "vue";
 
-const bulletLogic = (bulletsStore, invadorsStore, bullTop) => {
+const bulletLogic = (bulletsStore, invadersStore, bullTop) => {
   const topMovement = setInterval(() => {
     bullTop.bullTop -= 1;
     const bullets = computed(() =>
       Array.from(document.querySelectorAll(".bullet"))
     );
-    const invadors = computed(() =>
-      Array.from(document.querySelectorAll(".invador"))
+    const invaders = computed(() =>
+      Array.from(document.querySelectorAll(".invader"))
     );
 
     bullets.value.forEach((bullet) =>
-      invadors.value.forEach((invador) => {
+      invaders.value.forEach((invader) => {
         if (
-          bullet.offsetTop >= invador.offsetTop &&
-          bullet.offsetTop <= invador.offsetTop + invador.offsetHeight &&
-          bullet.offsetLeft >= invador.offsetLeft &&
-          bullet.offsetLeft <= invador.offsetLeft + invador.offsetWidth
+          bullet.offsetTop >= invader.offsetTop &&
+          bullet.offsetTop <= invader.offsetTop + invader.offsetHeight &&
+          bullet.offsetLeft >= invader.offsetLeft &&
+          bullet.offsetLeft <= invader.offsetLeft + invader.offsetWidth
         ) {
           bulletsStore.removeBullet(bullet.id);
-          invadorsStore.removeInvador(invador.id);
+          invadersStore.removeinvader(invader.id);
         }
       })
     );

@@ -41,7 +41,7 @@ onMounted(() => {
 <template>
   <div
     :id="id"
-    class="invador"
+    class="invader"
     :style="{
       width: state.randomSize + 'px',
       height: state.randomSize + 'px',
@@ -54,7 +54,7 @@ onMounted(() => {
 </template>
 
 <style>
-.invador {
+.invader {
   position: absolute;
   background-color: yellow;
   border-radius: 50%;
