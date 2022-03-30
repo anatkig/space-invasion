@@ -4,7 +4,7 @@ import { ref } from "@vue/reactivity";
 import ControlPanel from "../../components/containers/ControlPanel.vue";
 import TheMachineGun from "../../components/actors/TheMachineGun.vue";
 import TheBullet from "../../components/actors/TheBullet.vue";
-import Theinvader from "../../components/actors/Theinvader.vue";
+import Theinvader from "../../components/actors/TheInvader.vue";
 import TheModal from "../containers/TheModal.vue";
 import { useBulletsStore } from "../../stores/bullets.js";
 import { useMachineGunPositionStore } from "../../stores/machineGunPosition";

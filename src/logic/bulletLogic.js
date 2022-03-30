@@ -19,7 +19,7 @@ const bulletLogic = (bulletsStore, invadersStore, bullTop) => {
           bullet.offsetLeft <= invader.offsetLeft + invader.offsetWidth
         ) {
           bulletsStore.removeBullet(bullet.id);
-          invadersStore.removeinvader(invader.id);
+          invadersStore.removeInvader(invader.id);
         }
       })
     );
