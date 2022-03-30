@@ -1,50 +1,19 @@
 <script setup>
-import { reactive, onMounted, computed } from "vue";
-import { useBulletsStore } from "../../stores/bullets";
-import { useInvadorsStore } from "../../stores/invadors";
-
-const { coordinateX } = defineProps(["coordinateX", "id"]);
+import { onMounted, reactive } from "vue";
+import bulletLogic from "../../logic/bulletLogic.js";
+import { useBulletsStore } from "../../stores/bullets.js";
+import { useInvadorsStore } from "../../stores/invadors.js";
 
 const bulletsStore = useBulletsStore();
 const invadorsStore = useInvadorsStore();
 
-const state = reactive({
+const { coordinateX, id } = defineProps(["coordinateX", "id"]);
+const bullTop = reactive({
   bullTop: document.querySelector(".battle-field").offsetHeight - 60,
 });
 
-const bullTopValue = () => {
-  const topMovement = setInterval(() => {
-    state.bullTop -= 1;
-    const bullets = computed(() =>
-      Array.from(document.querySelectorAll(".bullet"))
-    );
-    const invadors = computed(() =>
-      Array.from(document.querySelectorAll(".invador"))
-    );
-
-    bullets.value.forEach((bullet) =>
-      invadors.value.forEach((invador) => {
-        if (
-          bullet.offsetTop >= invador.offsetTop &&
-          bullet.offsetTop <= invador.offsetTop + invador.offsetHeight &&
-          bullet.offsetLeft >= invador.offsetLeft &&
-          bullet.offsetLeft <= invador.offsetLeft + invador.offsetWidth
-        ) {
-          bulletsStore.removeBullet(bullet.id);
-          invadorsStore.removeInvador(invador.id);
-        }
-      })
-    );
-
-    if (state.bullTop <= -10) {
-      clearInterval(topMovement);
-      bullets.value.length && bulletsStore.removeBullet(bullets.value[0].id);
-    }
-  }, 10);
-};
-
 onMounted(() => {
-  bullTopValue();
+  bulletLogic(bulletsStore, invadorsStore, bullTop);
 });
 </script>
 
@@ -52,7 +21,7 @@ onMounted(() => {
   <div
     :id="id"
     class="bullet"
-    :style="{ top: state.bullTop + 'px', left: coordinateX + '%' }"
+    :style="{ top: bullTop.bullTop + 'px', left: coordinateX + '%' }"
   ></div>
 </template>
 
