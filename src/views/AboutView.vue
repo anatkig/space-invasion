@@ -28,6 +28,8 @@ import { RouterLink } from "vue-router";
 .about h1 {
   font-weight: 900;
   top: 10%;
+  box-shadow: 0 0 5px 3px rgb(255, 3, 3);
+  text-shadow: 0 -5px 7px red;
 }
 .info {
   display: flex;
