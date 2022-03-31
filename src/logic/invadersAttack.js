@@ -1,6 +1,6 @@
 import { computed } from "vue";
 
-const invadersAttack = (invadersStore) => {
+const invadersAttack = (invadersStore, modalText, modal, lives) => {
   const invaderCycle = setInterval(() => {
     invadersStore.addInvader({
       id: Date.now(),
@@ -16,7 +16,15 @@ const invadersAttack = (invadersStore) => {
         );
       })
     ) {
-      clearInterval(invaderCycle);
+      if (lives.$state.lives > 1) {
+        lives.subtractLives(1);
+        invadersStore.removeAllInvaders();
+      } else {
+        clearInterval(invaderCycle);
+        lives.subtractLives(1);
+        modalText.value = "Game Over!";
+        modal.value = !modal.value;
+      }
     }
   }, 1000);
 };

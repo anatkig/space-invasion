@@ -17,5 +17,8 @@ export const useInvadersStore = defineStore({
         ),
       ];
     },
+    removeAllInvaders() {
+      this.invaders = [];
+    },
   },
 });

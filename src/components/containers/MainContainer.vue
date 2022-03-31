@@ -10,17 +10,19 @@ import { useBulletsStore } from "../../stores/bullets.js";
 import { useMachineGunPositionStore } from "../../stores/machineGunPosition";
 import { useInvadersStore } from "../../stores/invaders";
 import invadersAttack from "../../logic/invadersAttack.js";
+import { useLivesStore } from "../../stores/lives";
 
 const bulletsStore = useBulletsStore();
 const machineGunPosition = useMachineGunPositionStore();
 const invadersStore = useInvadersStore();
+const lives = useLivesStore();
 
 const modal = ref(true);
 const modalText = ref("Start the Game!");
 
 const invadersAttackAndFlipModal = () => {
   modal.value = !modal.value;
-  !modal.value && invadersAttack(invadersStore);
+  !modal.value && invadersAttack(invadersStore, modalText, modal, lives);
 };
 
 window.onkeyup = (event) => {
