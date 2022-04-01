@@ -15,7 +15,8 @@ const randomCoordinateX = computed(
   () =>
     (state.randomCoordinateX = Math.floor(
       Math.random() *
-        (document.querySelector(".battle-field").offsetWidth - state.randomSize)
+        (document.querySelector(".battle-field")?.offsetWidth -
+          state.randomSize)
     ))
 );
 

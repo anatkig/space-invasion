@@ -10,11 +10,13 @@ export const useMachineGunPositionStore = defineStore({
   // },
   actions: {
     setPosition(left) {
-      if (
-        (this.machineGunLeft < 93 && left > 0) ||
-        (left < 0 && this.machineGunLeft > 1)
-      )
+      if (this.machineGunLeft < 0) {
+        this.machineGunLeft = 94;
+      } else if (this.machineGunLeft > 100) {
+        this.machineGunLeft = 0;
+      } else {
         this.machineGunLeft = this.machineGunLeft + left;
+      }
     },
   },
 });

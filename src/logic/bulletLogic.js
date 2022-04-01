@@ -4,7 +4,6 @@ const bulletLogic = (
   bulletsStore,
   invadersStore,
   bullTop,
-  bulletsLeft,
   invadersDestroyed
 ) => {
   const topMovement = setInterval(() => {
@@ -26,7 +25,6 @@ const bulletLogic = (
         ) {
           bulletsStore.removeBullet(bullet.id);
           invadersStore.removeInvader(invader.id);
-          bulletsLeft.subtractBulletsLeft(1);
           invadersDestroyed.addInvadersDestroyed(1);
         }
       })
