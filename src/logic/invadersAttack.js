@@ -1,6 +1,17 @@
 import { computed } from "vue";
 
-const invadersAttack = (invadersStore, modalText, modal, lives) => {
+const invadersAttack = (
+  invadersStore,
+  modalText,
+  modal,
+  lives,
+  bulletsLeft
+) => {
+  lives.resetLives();
+  invadersStore.removeAllInvaders();
+  bulletsLeft.resetBulletsLeft();
+  invadersStore.resetInvadersDestroyed();
+
   const invaderCycle = setInterval(() => {
     invadersStore.addInvader({
       id: Date.now(),

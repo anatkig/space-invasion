@@ -11,18 +11,21 @@ import { useMachineGunPositionStore } from "../../stores/machineGunPosition";
 import { useInvadersStore } from "../../stores/invaders";
 import invadersAttack from "../../logic/invadersAttack.js";
 import { useLivesStore } from "../../stores/lives";
+import { useBulletsLeftStore } from "../../stores/bulletsLeft";
 
 const bulletsStore = useBulletsStore();
 const machineGunPosition = useMachineGunPositionStore();
 const invadersStore = useInvadersStore();
 const lives = useLivesStore();
+const bulletsLeft = useBulletsLeftStore();
 
 const modal = ref(true);
-const modalText = ref("Start the Game!");
+const modalText = ref("Greetings Commander!");
 
 const invadersAttackAndFlipModal = () => {
   modal.value = !modal.value;
-  !modal.value && invadersAttack(invadersStore, modalText, modal, lives);
+  !modal.value &&
+    invadersAttack(invadersStore, modalText, modal, lives, bulletsLeft);
 };
 
 window.onkeyup = (event) => {
@@ -62,22 +65,7 @@ window.onkeyup = (event) => {
           :id="invader.id"
         />
       </div>
-      <ControlPanel>
-        <!-- <img
-          alt="Vue logo"
-          class="logo"
-          src="@/assets/logo.svg"
-          width="125"
-          height="125"
-        /> -->
-
-        <!-- <div class="wrapper">
-          <nav>
-            <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/about">About</RouterLink>
-          </nav>
-        </div> -->
-      </ControlPanel>
+      <ControlPanel />
     </div>
   </div>
 </template>

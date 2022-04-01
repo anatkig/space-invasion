@@ -4,7 +4,7 @@ export const useLevelStore = defineStore({
   id: "level",
 
   state: () => ({
-    level: 3,
+    level: 0,
   }),
 
   actions: {

@@ -15,5 +15,8 @@ export const useLivesStore = defineStore({
     subtractLives(num) {
       this.lives -= num;
     },
+    resetLives() {
+      this.lives = 3;
+    },
   },
 });

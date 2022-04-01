@@ -4,12 +4,23 @@ const { text } = defineProps(["text"]);
 
 <template>
   <div class="modal">
-    <div class="control-buttons" v-if="text === 'Start the Game!'">
-      <button @click="$emit('flipModal')" class="modal-text">
-        {{ text }}
+    <div class="title">{{ text }}</div>
+    <div class="control-buttons">
+      <button
+        @click="$emit('flipModal')"
+        class="modal-text"
+        v-if="text === 'Greetings Commander!'"
+      >
+        Start the Game!
+      </button>
+      <button
+        @click="$emit('flipModal')"
+        class="modal-text"
+        v-if="text === 'Game Over!'"
+      >
+        Restart the Game!
       </button>
     </div>
-    <div class="game-over" v-else>{{ text }}</div>
   </div>
 </template>
 
@@ -27,7 +38,9 @@ const { text } = defineProps(["text"]);
   box-shadow: 0px 0px 5px 10px rgb(107, 107, 0);
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 .control-buttons {
   display: flex;
@@ -46,9 +59,8 @@ const { text } = defineProps(["text"]);
 .modal-text:hover {
   background-color: rgb(255, 255, 0);
 }
-.game-over {
+.title {
   font-size: 2rem;
   font-weight: 900;
-  margin: auto;
 }
 </style>

@@ -14,5 +14,8 @@ export const useBulletsLeftStore = defineStore({
     subtractBulletsLeft(num) {
       this.bulletsLeft -= num;
     },
+    resetBulletsLeft() {
+      this.bulletsLeft = 100;
+    },
   },
 });

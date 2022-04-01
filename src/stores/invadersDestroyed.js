@@ -13,5 +13,8 @@ export const useInvadersDestroyedStore = defineStore({
     removeAllInvadersDestroyed() {
       this.invadersDestroyed = 0;
     },
+    resetInvadersDestroyed() {
+      this.invadersDestroyed = 0;
+    },
   },
 });
