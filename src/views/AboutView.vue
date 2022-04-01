@@ -26,10 +26,13 @@ import { RouterLink } from "vue-router";
   height: 100vh;
 }
 .about h1 {
-  font-weight: 900;
+  font-size: 3rem;
+  font-weight: 700;
   top: 10%;
   box-shadow: 0 0 5px 3px rgb(255, 3, 3);
-  text-shadow: 0 -5px 7px red;
+  text-shadow: 0 -1px 1px rgb(0, 0, 0), 0 1px 1px rgb(0, 0, 0);
+  color: rgb(250, 96, 96);
+  background-color: rgb(216, 216, 192);
 }
 .info {
   display: flex;
@@ -46,6 +49,9 @@ import { RouterLink } from "vue-router";
   color: white;
   font-weight: 700;
 }
+.info-item:hover {
+  box-shadow: 0 0 6px 6px gray;
+}
 .info a {
   all: unset;
 }
@@ -54,9 +60,7 @@ import { RouterLink } from "vue-router";
   background-color: red;
   padding: 20px;
   top: 25%;
-}
-.play a {
-  color: white;
   font-weight: 700;
+  font-size: 2rem;
 }
 </style>

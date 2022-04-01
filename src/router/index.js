@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import AboutView from "../views/AboutView.vue";
-import AimView from "../views/AimView.vue";
-import RulesView from "../views/RulesView.vue";
+import InfoView from "../views/InfoView.vue";
+import { aim, rules } from "../data/info.js";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,12 +20,14 @@ const router = createRouter({
     {
       path: "/aim",
       name: "aim",
-      component: AimView,
+      component: InfoView,
+      props: { pageContent: aim },
     },
     {
       path: "/rules",
       name: "rules",
-      component: RulesView,
+      component: InfoView,
+      props: { pageContent: rules },
     },
   ],
 });
