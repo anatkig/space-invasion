@@ -48,16 +48,19 @@ const { text } = defineProps(["text"]);
   align-items: center;
 }
 .modal-text {
-  background-color: rgb(200, 200, 0);
+  background-color: rgb(231, 231, 2);
   cursor: pointer;
   border-radius: 2%;
 
+  color: red;
   font-size: 2rem;
   font-weight: 900;
   margin: auto;
+
+  box-shadow: 0px 0px 2px 2px rgb(107, 107, 0);
 }
 .modal-text:hover {
-  background-color: rgb(255, 255, 0);
+  box-shadow: 0px 0px 5px 5px rgb(107, 107, 0);
 }
 .title {
   font-size: 2rem;

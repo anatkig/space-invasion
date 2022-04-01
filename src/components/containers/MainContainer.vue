@@ -12,12 +12,14 @@ import { useInvadersStore } from "../../stores/invaders";
 import invadersAttack from "../../logic/invadersAttack.js";
 import { useLivesStore } from "../../stores/lives";
 import { useBulletsLeftStore } from "../../stores/bulletsLeft";
+import { useInvadersDestroyedStore } from "../../stores/invadersDestroyed";
 
 const bulletsStore = useBulletsStore();
 const machineGunPosition = useMachineGunPositionStore();
 const invadersStore = useInvadersStore();
 const lives = useLivesStore();
 const bulletsLeft = useBulletsLeftStore();
+const invadersDestroyed = useInvadersDestroyedStore();
 
 const modal = ref(true);
 const modalText = ref("Greetings Commander!");
@@ -25,7 +27,14 @@ const modalText = ref("Greetings Commander!");
 const invadersAttackAndFlipModal = () => {
   modal.value = !modal.value;
   !modal.value &&
-    invadersAttack(invadersStore, modalText, modal, lives, bulletsLeft);
+    invadersAttack(
+      invadersStore,
+      modalText,
+      modal,
+      lives,
+      bulletsLeft,
+      invadersDestroyed
+    );
 };
 
 window.onkeyup = (event) => {

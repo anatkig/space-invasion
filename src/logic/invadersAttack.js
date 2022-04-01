@@ -5,12 +5,13 @@ const invadersAttack = (
   modalText,
   modal,
   lives,
-  bulletsLeft
+  bulletsLeft,
+  invadersDestroyed
 ) => {
   lives.resetLives();
   invadersStore.removeAllInvaders();
   bulletsLeft.resetBulletsLeft();
-  invadersStore.resetInvadersDestroyed();
+  invadersDestroyed.resetInvadersDestroyed();
 
   const invaderCycle = setInterval(() => {
     invadersStore.addInvader({
