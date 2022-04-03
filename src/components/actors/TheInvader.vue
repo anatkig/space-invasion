@@ -7,6 +7,7 @@ const state = reactive({
   invTop: 0,
   randomSize: 0,
   randomCoordinateX: 0,
+  speed: 30,
 });
 const randomSize = () =>
   (state.randomSize = Math.floor(Math.random() * 30) + 20);
@@ -32,7 +33,7 @@ const invTopValue = () => {
         clearInterval(topMovement);
       }
     }
-  }, 10);
+  }, state.speed);
 };
 
 onMounted(() => {

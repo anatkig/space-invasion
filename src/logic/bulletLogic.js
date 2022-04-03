@@ -3,8 +3,10 @@ import { computed } from "vue";
 const bulletLogic = (
   bulletsStore,
   invadersStore,
-  bullTop,
-  invadersDestroyed
+  invadersDestroyedStore,
+  bulletsLeftStore,
+  levelStore,
+  bullTop
 ) => {
   const topMovement = setInterval(() => {
     bullTop.bullTop -= 1;
@@ -25,7 +27,11 @@ const bulletLogic = (
         ) {
           bulletsStore.removeBullet(bullet.id);
           invadersStore.removeInvader(invader.id);
-          invadersDestroyed.addInvadersDestroyed(1);
+          invadersDestroyedStore.addInvadersDestroyed(1);
+          if (invadersDestroyedStore.$state.invadersDestroyed % 10 === 0) {
+            levelStore.addLevel();
+            bulletsLeftStore.addBulletsLeft(5);
+          }
         }
       })
     );

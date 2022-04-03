@@ -5,11 +5,13 @@ import { useBulletsStore } from "../../stores/bullets.js";
 import { useInvadersStore } from "../../stores/invaders.js";
 import { useBulletsLeftStore } from "../../stores/bulletsLeft";
 import { useInvadersDestroyedStore } from "../../stores/invadersDestroyed.js";
+import { useLevelStore } from "../../stores/level.js";
 
 const bulletsStore = useBulletsStore();
 const invadersStore = useInvadersStore();
-const bulletsLeft = useBulletsLeftStore();
-const invadersDestroyed = useInvadersDestroyedStore();
+const bulletsLeftStore = useBulletsLeftStore();
+const invadersDestroyedStore = useInvadersDestroyedStore();
+const levelStore = useLevelStore();
 
 const { coordinateX, id } = defineProps(["coordinateX", "id"]);
 const bullTop = reactive({
@@ -20,9 +22,10 @@ onMounted(() => {
   bulletLogic(
     bulletsStore,
     invadersStore,
-    bullTop,
-    bulletsLeft,
-    invadersDestroyed
+    invadersDestroyedStore,
+    bulletsLeftStore,
+    levelStore,
+    bullTop
   );
 });
 </script>

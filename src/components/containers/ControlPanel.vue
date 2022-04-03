@@ -3,7 +3,6 @@ import { useLivesStore } from "../../stores/lives";
 import { useBulletsLeftStore } from "../../stores/bulletsLeft";
 import { useInvadersDestroyedStore } from "../../stores/invadersDestroyed";
 import { useLevelStore } from "../../stores/level";
-import { reactive } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 
 const { startPauseResume } = defineProps(["startPauseResume"]);

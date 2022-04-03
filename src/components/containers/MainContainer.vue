@@ -13,6 +13,7 @@ import invadersAttack from "../../logic/invadersAttack.js";
 import { useLivesStore } from "../../stores/lives";
 import { useBulletsLeftStore } from "../../stores/bulletsLeft";
 import { useInvadersDestroyedStore } from "../../stores/invadersDestroyed";
+import { useLevelStore } from "../../stores/level";
 
 const bulletsStore = useBulletsStore();
 const machineGunPosition = useMachineGunPositionStore();
@@ -20,6 +21,7 @@ const invadersStore = useInvadersStore();
 const lives = useLivesStore();
 const bulletsLeft = useBulletsLeftStore();
 const invadersDestroyed = useInvadersDestroyedStore();
+const level = useLevelStore();
 
 const modal = ref(true);
 const modalText = ref("Greetings Commander!");
@@ -37,7 +39,8 @@ const invadersAttackAndFlipModal = () => {
       lives,
       bulletsLeft,
       invadersDestroyed,
-      startPauseResume
+      startPauseResume,
+      level
     );
 
   if (lives.$state.lives === 0) {
