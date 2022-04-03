@@ -20,6 +20,13 @@ const { text } = defineProps(["text"]);
       >
         Restart the Game!
       </button>
+      <button
+        @click="$emit('flipModal')"
+        class="modal-text"
+        v-if="text === 'Game Paused'"
+      >
+        Resume the Game!
+      </button>
     </div>
   </div>
 </template>

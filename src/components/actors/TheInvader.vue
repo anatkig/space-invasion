@@ -22,13 +22,15 @@ const randomCoordinateX = computed(
 
 const invTopValue = () => {
   const topMovement = setInterval(() => {
-    state.invTop += 1;
+    if (document.querySelector(".pause-button").innerHTML === "Pause") {
+      state.invTop += 1;
 
-    if (
-      state.invTop + state.randomSize ===
-      document.querySelector(".battle-field").offsetHeight
-    ) {
-      clearInterval(topMovement);
+      if (
+        state.invTop + state.randomSize ===
+        document.querySelector(".battle-field").offsetHeight
+      ) {
+        clearInterval(topMovement);
+      }
     }
   }, 10);
 };

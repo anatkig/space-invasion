@@ -6,9 +6,7 @@ import { useLevelStore } from "../../stores/level";
 import { reactive } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 
-const state = reactive({
-  pauseResume: "pause/resume",
-});
+const { startPauseResume } = defineProps(["startPauseResume"]);
 
 const router = useRouter();
 
@@ -42,8 +40,11 @@ const level = useLevelStore();
         <RouterLink to="/">Home</RouterLink>
       </button>
 
-      <button class="control-panel_child navigation_child pause-button">
-        {{ state.pauseResume }}
+      <button
+        class="control-panel_child navigation_child pause-button"
+        @click="$emit('flipModal')"
+      >
+        {{ startPauseResume }}
       </button>
     </div>
   </div>
@@ -94,5 +95,6 @@ const level = useLevelStore();
 }
 .navigation_child:hover {
   transform: scale(1.02);
+  border: solid 3px;
 }
 </style>

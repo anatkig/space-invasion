@@ -23,18 +23,36 @@ const invadersDestroyed = useInvadersDestroyedStore();
 
 const modal = ref(true);
 const modalText = ref("Greetings Commander!");
+const startPauseResume = ref("Start");
 
 const invadersAttackAndFlipModal = () => {
   modal.value = !modal.value;
-  !modal.value &&
+
+  (startPauseResume.value === "Start" ||
+    startPauseResume.value === "Restart") &&
     invadersAttack(
       invadersStore,
       modalText,
       modal,
       lives,
       bulletsLeft,
-      invadersDestroyed
+      invadersDestroyed,
+      startPauseResume
     );
+
+  if (lives.$state.lives === 0) {
+    startPauseResume.value = "Restart";
+  } else if (
+    startPauseResume.value === "Start" ||
+    startPauseResume.value === "Restart"
+  ) {
+    startPauseResume.value = "Pause";
+  } else if (startPauseResume.value === "Pause") {
+    startPauseResume.value = "Resume";
+    modalText.value = "Game Paused";
+  } else {
+    startPauseResume.value = "Pause";
+  }
 };
 
 window.onkeyup = (event) => {
@@ -75,7 +93,10 @@ window.onkeyup = (event) => {
           :id="invader.id"
         />
       </div>
-      <ControlPanel />
+      <ControlPanel
+        :startPauseResume="startPauseResume"
+        @flip-modal="invadersAttackAndFlipModal"
+      />
     </div>
   </div>
 </template>
