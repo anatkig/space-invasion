@@ -41,7 +41,6 @@ const level = useLevelStore();
 
       <button
         class="control-panel_child navigation_child pause-button"
-        @click="$emit('flipModal')"
       >
         {{ startPauseResume }}
       </button>

@@ -58,7 +58,8 @@ const invadersAttackAndFlipModal = () => {
   }
 };
 
-window.onkeyup = (event) => {
+const keyHandler = (event) => {
+  console.log(event.target)
   if (event.key === " " && bulletsLeft.$state.bulletsLeft > 0) {
     bulletsStore.addBullet({
       id: Date.now(),
@@ -72,17 +73,18 @@ window.onkeyup = (event) => {
     invadersAttackAndFlipModal();
   }
 };
+const clickHandler = (event) => {
+  if (event.target.classList.value.includes("pause-button")) {
+    invadersAttackAndFlipModal();
+  }
+};
 </script>
 
 <template>
-  <div class="main-container">
+  <div class="main-container" @keyup="keyHandler" @mouseup="clickHandler">
     <div class="main-container_inner-layer">
       <div class="battle-field">
-        <TheModal
-          v-show="modal"
-          :text="modalText"
-          @flip-modal="invadersAttackAndFlipModal"
-        />
+        <TheModal v-show="modal" :text="modalText" @flip-modal="invadersAttackAndFlipModal" />
         <TheMachineGun />
         <TheBullet
           v-for="item in bulletsStore.$state.bullets"
@@ -96,10 +98,7 @@ window.onkeyup = (event) => {
           :id="invader.id"
         />
       </div>
-      <ControlPanel
-        :startPauseResume="startPauseResume"
-        @flip-modal="invadersAttackAndFlipModal"
-      />
+      <ControlPanel :startPauseResume="startPauseResume" />
     </div>
   </div>
 </template>
