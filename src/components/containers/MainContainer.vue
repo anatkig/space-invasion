@@ -1,5 +1,5 @@
 <script setup>
-import { RouterLink } from "vue-router";
+
 import { ref } from "@vue/reactivity";
 import ControlPanel from "../../components/containers/ControlPanel.vue";
 import TheMachineGun from "../../components/actors/TheMachineGun.vue";
@@ -14,6 +14,7 @@ import { useLivesStore } from "../../stores/lives";
 import { useBulletsLeftStore } from "../../stores/bulletsLeft";
 import { useInvadersDestroyedStore } from "../../stores/invadersDestroyed";
 import { useLevelStore } from "../../stores/level";
+
 
 const bulletsStore = useBulletsStore();
 const machineGunPosition = useMachineGunPositionStore();
@@ -58,8 +59,8 @@ const invadersAttackAndFlipModal = () => {
   }
 };
 
-const keyHandler = (event) => {
-  console.log(event.target)
+window.onkeyup = (event) => {
+
   if (event.key === " " && bulletsLeft.$state.bulletsLeft > 0) {
     bulletsStore.addBullet({
       id: Date.now(),
@@ -77,11 +78,17 @@ const clickHandler = (event) => {
   if (event.target.classList.value.includes("pause-button")) {
     invadersAttackAndFlipModal();
   }
+  else if (event.target.classList.value.includes("restart")) {
+    modal.value = true;
+    startPauseResume.value = "Restart";
+    invadersAttackAndFlipModal();
+  }
 };
+
 </script>
 
 <template>
-  <div class="main-container" @keyup="keyHandler" @mouseup="clickHandler">
+  <div class="main-container" @mouseup="clickHandler">
     <div class="main-container_inner-layer">
       <div class="battle-field">
         <TheModal v-show="modal" :text="modalText" @flip-modal="invadersAttackAndFlipModal" />

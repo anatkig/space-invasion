@@ -18,32 +18,20 @@ const level = useLevelStore();
 <template>
   <div class="control-panel">
     <div class="control-panel_data-container">
-      <div class="control-panel_child number-of-lives">
-        lives: {{ lives.$state.lives }}
-      </div>
-      <div class="control-panel_child level">
-        level: {{ level.$state.level }}
-      </div>
-      <div class="control-panel_child bullets-left">
-        bullets: {{ bulletsLeft.$state.bulletsLeft }}
-      </div>
-      <div class="control-panel_child invader-killed">
-        invaders destroyed: {{ invadersDestroyed.$state.invadersDestroyed }}
-      </div>
+      <div class="control-panel_child number-of-lives">lives: {{ lives.$state.lives }}</div>
+      <div class="control-panel_child level">level: {{ level.$state.level }}</div>
+      <div class="control-panel_child bullets-left">bullets: {{ bulletsLeft.$state.bulletsLeft }}</div>
+      <div
+        class="control-panel_child invader-killed"
+      >invaders destroyed: {{ invadersDestroyed.$state.invadersDestroyed }}</div>
     </div>
     <div class="control-panel_navigation-container">
-      <button
-        class="control-panel_child navigation_child home-button"
-        @click="router.push('/')"
-      >
+      <button class="control-panel_child navigation_child home-button" @click="router.push('/')">
         <RouterLink to="/">Home</RouterLink>
       </button>
 
-      <button
-        class="control-panel_child navigation_child pause-button"
-      >
-        {{ startPauseResume }}
-      </button>
+      <button class="control-panel_child navigation_child pause-button">{{ startPauseResume }}</button>
+      <button class="control-panel_child navigation_child restart">Restart</button>
     </div>
   </div>
 </template>
