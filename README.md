@@ -1,11 +1,7 @@
 # space-invasion
 
 \*\*\*What to do next
-1.Links from pages to the main
-2.Remove underline in the HOME on main game window
-3.Write propper description on the aim and howto pages
-4.Make aim and howto pages look good
-5.create window which tell that a life has been taken
+5.create window which tells that a life has been taken
 6.invadores should come in different shapes/color each level
 7.the game must start slow and become faster each level. levels change after 20 invaders killed
 8.for some reason there are 2 restart buttons

@@ -1,11 +1,11 @@
 <script setup>
-import { useLivesStore } from "../../stores/lives";
-import { useBulletsLeftStore } from "../../stores/bulletsLeft";
-import { useInvadersDestroyedStore } from "../../stores/invadersDestroyed";
-import { useLevelStore } from "../../stores/level";
-import { RouterLink, useRouter } from "vue-router";
+import { useLivesStore } from '../../stores/lives';
+import { useBulletsLeftStore } from '../../stores/bulletsLeft';
+import { useInvadersDestroyedStore } from '../../stores/invadersDestroyed';
+import { useLevelStore } from '../../stores/level';
+import { RouterLink, useRouter } from 'vue-router';
 
-const { startPauseResume } = defineProps(["startPauseResume"]);
+const { startPauseResume } = defineProps(['startPauseResume']);
 
 const router = useRouter();
 
@@ -18,25 +18,41 @@ const level = useLevelStore();
 <template>
   <div class="control-panel">
     <div class="control-panel_data-container">
-      <div class="control-panel_child number-of-lives">lives: {{ lives.$state.lives }}</div>
-      <div class="control-panel_child level">level: {{ level.$state.level }}</div>
-      <div class="control-panel_child bullets-left">bullets: {{ bulletsLeft.$state.bulletsLeft }}</div>
-      <div
-        class="control-panel_child invader-killed"
-      >invaders destroyed: {{ invadersDestroyed.$state.invadersDestroyed }}</div>
+      <div class="control-panel_child number-of-lives">
+        lives: {{ lives.$state.lives }}
+      </div>
+      <div class="control-panel_child level">
+        level: {{ level.$state.level }}
+      </div>
+      <div class="control-panel_child bullets-left">
+        bullets: {{ bulletsLeft.$state.bulletsLeft }}
+      </div>
+      <div class="control-panel_child invader-killed">
+        invaders destroyed: {{ invadersDestroyed.$state.invadersDestroyed }}
+      </div>
     </div>
     <div class="control-panel_navigation-container">
-      <button class="control-panel_child navigation_child home-button" @click="router.push('/')">
-        <RouterLink to="/">Home</RouterLink>
+      <button
+        class="control-panel_child navigation_child home-button"
+        @click="router.push('/')"
+      >
+        <RouterLink to="/" class="link">Home</RouterLink>
       </button>
 
-      <button class="control-panel_child navigation_child pause-button">{{ startPauseResume }}</button>
-      <button class="control-panel_child navigation_child restart">Restart</button>
+      <button class="control-panel_child navigation_child pause-button">
+        {{ startPauseResume }}
+      </button>
+      <button class="control-panel_child navigation_child restart">
+        Restart
+      </button>
     </div>
   </div>
 </template>
 
 <style>
+.link {
+  text-decoration: none;
+}
 .control-panel {
   display: flex;
   justify-content: space-between;
