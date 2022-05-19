@@ -1,7 +1,7 @@
 # space-invasion
 
 \*\*\*What to do next
-5.create window which tells that a life has been taken
+
 6.invadores should come in different shapes/color each level
 7.the game must start slow and become faster each level. levels change after 20 invaders killed
 8.for some reason there are 2 restart buttons
@@ -9,6 +9,7 @@
 10.maybe find a cool svg machine gun
 11.change the color of the field each level
 12.create a window showing that the level has changed
+13.optimize the interval process - the function is too long and complicated
 
 ## Recommended IDE Setup
 
