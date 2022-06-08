@@ -1,4 +1,4 @@
-import { computed } from "vue";
+import { computed } from 'vue';
 
 const bulletLogic = (
   bulletsStore,
@@ -11,10 +11,10 @@ const bulletLogic = (
   const topMovement = setInterval(() => {
     bullTop.bullTop -= 1;
     const bullets = computed(() =>
-      Array.from(document.querySelectorAll(".bullet"))
+      Array.from(document.querySelectorAll('.bullet'))
     );
     const invaders = computed(() =>
-      Array.from(document.querySelectorAll(".invader"))
+      Array.from(document.querySelectorAll('.invader'))
     );
 
     bullets.value.forEach((bullet) =>
@@ -30,7 +30,7 @@ const bulletLogic = (
           invadersDestroyedStore.addInvadersDestroyed(1);
           if (invadersDestroyedStore.$state.invadersDestroyed % 10 === 0) {
             levelStore.addLevel();
-            bulletsLeftStore.addBulletsLeft(5);
+            bulletsLeftStore.addBulletsLeft(100);
           }
         }
       })
