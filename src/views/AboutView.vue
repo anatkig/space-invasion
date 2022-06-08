@@ -1,16 +1,16 @@
 <script setup>
-import { RouterLink } from "vue-router";
+import { RouterLink } from 'vue-router';
 </script>
 <template>
   <div class="about">
     <h1>Space Invasion</h1>
     <div class="info">
       <RouterLink to="/aim"
-        ><button class="info-item aim">Aim of the Game</button></RouterLink
+        ><button class="info-item">Aim of the Game</button></RouterLink
       >
 
       <RouterLink to="/rules">
-        <button class="info-item rules">How to Play</button></RouterLink
+        <button class="info-item">How to Play</button></RouterLink
       >
     </div>
     <RouterLink to="/game">
