@@ -10,6 +10,7 @@ const invadersAttack = (
   startPauseResume,
   level
 ) => {
+  level.resetLevel();
   lives.resetLives();
   invadersStore.removeAllInvaders();
   bulletsLeft.resetBulletsLeft();

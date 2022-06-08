@@ -75,7 +75,6 @@ const clickHandler = (event) => {
   if (event.target.classList.value.includes('pause-button')) {
     invadersAttackAndFlipModal();
   } else if (event.target.classList.value.includes('restart')) {
-    level.resetLevel();
     modal.value = true;
     startPauseResume.value = 'Restart';
     invadersAttackAndFlipModal();
