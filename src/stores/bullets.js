@@ -1,9 +1,9 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
 export const useBulletsStore = defineStore({
-  id: "bullets",
+  id: 'bullets',
   state: () => ({
-    bullets: [],
+    bullets: []
   }),
 
   actions: {
@@ -14,8 +14,11 @@ export const useBulletsStore = defineStore({
       this.bullets = [
         ...Array.from(this.bullets).filter(
           (bullet) => bullet.id !== Number(bulletId)
-        ),
+        )
       ];
     },
-  },
+    resetBullets() {
+      this.bullets = [];
+    }
+  }
 });

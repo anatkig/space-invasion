@@ -2,7 +2,7 @@
 
 \*\*\*What to do next
 1.bullets disappear when fired rapidly
-2.a lot of bullets slow the game considerably
+2.bullets logic should be incorporated into the bullet component to simplify interval and to removed unnecessary dom query
 3.Life has been taken window appears incorrectly when it is already over
 6.invadores should come in different shapes/color each level
 7.the game must start slow and become faster each level. levels change after 20 invaders killed
@@ -49,3 +49,5 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+Fast bullet solve the problem of slowliness when there are a lot of elements on board.

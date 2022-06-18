@@ -37,6 +37,7 @@ const invadersAttackAndFlipModal = () => {
       modal,
       lives,
       bulletsLeft,
+      bulletsStore,
       invadersDestroyed,
       startPauseResume,
       level
@@ -58,13 +59,15 @@ const invadersAttackAndFlipModal = () => {
 };
 
 window.onkeyup = (event) => {
+  let counter = 0;
   if (event.key === ' ' && bulletsLeft.$state.bulletsLeft > 0) {
     bulletsStore.addBullet({
-      id: Date.now(),
+      id: counter,
       coordinateX: machineGunPosition.$state.machineGunLeft,
       coordinateY: document.querySelector('.battle-field').offsetHeight - 60
     });
     bulletsLeft.subtractBulletsLeft(1);
+    counter++;
   }
 
   if (event.key === 'Enter') {

@@ -6,6 +6,7 @@ const invadersAttack = (
   modal,
   lives,
   bulletsLeft,
+  bulletsStore,
   invadersDestroyed,
   startPauseResume,
   level
@@ -15,6 +16,7 @@ const invadersAttack = (
   invadersStore.removeAllInvaders();
   bulletsLeft.resetBulletsLeft();
   invadersDestroyed.resetInvadersDestroyed();
+  bulletsStore.resetBullets();
 
   const invaderCycle = setInterval(
     () => {

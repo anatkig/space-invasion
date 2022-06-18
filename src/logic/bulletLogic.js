@@ -9,7 +9,7 @@ const bulletLogic = (
   bullTop
 ) => {
   const topMovement = setInterval(() => {
-    bullTop.bullTop -= 1;
+    bullTop.bullTop -= 3;
     const bullets = computed(() =>
       Array.from(document.querySelectorAll('.bullet'))
     );
@@ -40,7 +40,7 @@ const bulletLogic = (
       clearInterval(topMovement);
       bullets.value.length && bulletsStore.removeBullet(bullets.value[0].id);
     }
-  }, 10);
+  }, 1);
 };
 
 export default bulletLogic;
