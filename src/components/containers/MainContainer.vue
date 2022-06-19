@@ -105,6 +105,8 @@ const clickHandler = (event) => {
           v-for="invader in invadersStore.$state.invaders"
           :key="invader.id"
           :id="invader.id"
+          :randomCoordinateX="invader.randomCoordinateX"
+          :randomSize="invader.randomSize"
         />
       </div>
       <ControlPanel :startPauseResume="startPauseResume" />

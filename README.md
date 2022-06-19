@@ -3,6 +3,7 @@
 \*\*\*What to do next
 1.bullets disappear when fired rapidly
 2.bullets logic should be incorporated into the bullet component to simplify interval and to removed unnecessary dom query
+33.continue the previous task - try to align machine gun and invader positionX to simplify
 3.Life has been taken window appears incorrectly when it is already over
 6.invadores should come in different shapes/color each level
 7.the game must start slow and become faster each level. levels change after 20 invaders killed

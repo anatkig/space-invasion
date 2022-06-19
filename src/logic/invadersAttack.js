@@ -21,8 +21,16 @@ const invadersAttack = (
   const invaderCycle = setInterval(
     () => {
       if (startPauseResume.value === 'Pause') {
+        const randomSize = Math.floor(Math.random() * 30) + 20;
+        const randomCoordinateX = Math.floor(
+          Math.random() *
+            (document.querySelector('.battle-field')?.offsetWidth - randomSize)
+        );
+
         invadersStore.addInvader({
-          id: Date.now()
+          id: Date.now(),
+          randomSize: randomSize,
+          randomCoordinateX: randomCoordinateX
         });
         const invaders = computed(() =>
           Array.from(document.querySelectorAll('.invader'))

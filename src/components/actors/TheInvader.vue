@@ -1,34 +1,27 @@
 <script setup>
-import { onMounted, reactive, computed } from "vue";
+import { onMounted, reactive, computed } from 'vue';
 
-const { id } = defineProps(["id"]);
+const { id, randomSize, randomCoordinateX } = defineProps([
+  'id',
+  'randomSize',
+  'randomCoordinateX'
+]);
 
 const state = reactive({
   invTop: 0,
-  randomSize: 0,
-  randomCoordinateX: 0,
-  speed: 30,
+  randomSize: randomSize,
+  randomCoordinateX: randomCoordinateX,
+  speed: 30
 });
-const randomSize = () =>
-  (state.randomSize = Math.floor(Math.random() * 30) + 20);
-
-const randomCoordinateX = computed(
-  () =>
-    (state.randomCoordinateX = Math.floor(
-      Math.random() *
-        (document.querySelector(".battle-field")?.offsetWidth -
-          state.randomSize)
-    ))
-);
 
 const invTopValue = () => {
   const topMovement = setInterval(() => {
-    if (document.querySelector(".pause-button").innerHTML === "Pause") {
+    if (document.querySelector('.pause-button').innerHTML === 'Pause') {
       state.invTop += 1;
 
       if (
         state.invTop + state.randomSize ===
-        document.querySelector(".battle-field").offsetHeight
+        document.querySelector('.battle-field').offsetHeight
       ) {
         clearInterval(topMovement);
       }
@@ -38,7 +31,6 @@ const invTopValue = () => {
 
 onMounted(() => {
   invTopValue();
-  randomSize();
 });
 </script>
 
@@ -50,11 +42,9 @@ onMounted(() => {
       width: state.randomSize + 'px',
       height: state.randomSize + 'px',
       left: randomCoordinateX + 'px',
-      top: state.invTop + 'px',
+      top: state.invTop + 'px'
     }"
-  >
-    {{ randomSize.value }}
-  </div>
+  />
 </template>
 
 <style>
