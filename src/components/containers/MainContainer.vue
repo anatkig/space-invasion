@@ -106,6 +106,8 @@ const clickHandler = (event) => {
           :id="invader.id"
           :randomCoordinateX="invader.randomCoordinateX"
           :randomSize="invader.randomSize"
+          :borderRadius="invader.borderRadius"
+          :backgroundColor="invader.backgroundColor"
         />
       </div>
       <ControlPanel :startPauseResume="startPauseResume" />

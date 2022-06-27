@@ -26,11 +26,14 @@ const invadersAttack = (
           Math.random() *
             (document.querySelector('.battle-field')?.offsetWidth - randomSize)
         );
-
+         const borderRadius = Math.floor(level.$state.level%6*10);
+         const backgroundColors = ["green","yellow","blue","orange","red"]
         invadersStore.addInvader({
           id: Date.now(),
           randomSize: randomSize,
-          randomCoordinateX: randomCoordinateX
+          randomCoordinateX: randomCoordinateX,
+          borderRadius:borderRadius,
+          backgroundColor: backgroundColors[level.$state.level%4]
         });
         const invaders = computed(() =>
           Array.from(document.querySelectorAll('.invader'))

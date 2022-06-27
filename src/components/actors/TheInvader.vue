@@ -7,7 +7,9 @@ const level = useLevelStore().$state.level;
 const { id, randomSize, randomCoordinateX } = defineProps([
   'id',
   'randomSize',
-  'randomCoordinateX'
+  'randomCoordinateX',
+  'borderRadius',
+  'backgroundColor'
 ]);
 
 const state = reactive({
@@ -45,7 +47,9 @@ onMounted(() => {
       width: state.randomSize + 'px',
       height: state.randomSize + 'px',
       left: randomCoordinateX + 'px',
-      top: state.invTop + 'px'
+      top: state.invTop + 'px',
+      backgroundColor: backgroundColor,
+      borderRadius: borderRadius +'%'
     }"
   />
 </template>
@@ -53,8 +57,6 @@ onMounted(() => {
 <style>
 .invader {
   position: absolute;
-  background-color: yellow;
-  border-radius: 50%;
   /* background: linear-gradient(yellow 75%, black 25%); */
 }
 </style>
