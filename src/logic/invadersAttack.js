@@ -61,7 +61,7 @@ const invadersAttack = (
         }
       }
     },
-    level.$state.level ? 2000 / level.$state.level : 2000
+    2000
   );
 };
 

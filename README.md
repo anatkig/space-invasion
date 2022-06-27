@@ -1,8 +1,8 @@
 # space-invasion
 
 \*\*\*What to do next
-1.bullets disappear when fired rapidly - the problem is in the bullet logic - any bullet reacts to any invador - work on the logic
-2.bullets logic should be incorporated into the bullet component to simplify interval and to removed unnecessary dom query
+
+1.speed doesn't seem to increase when levels inscrease
 33.continue the previous task - try to align machine gun and invader positionX to simplify
 3.Life has been taken window appears incorrectly when it is already over
 6.invadores should come in different shapes/color each level

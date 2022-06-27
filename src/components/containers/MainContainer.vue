@@ -61,7 +61,6 @@ const invadersAttackAndFlipModal = () => {
 window.onkeyup = (event) => {
 
   if (event.key === ' ' && bulletsLeft.$state.bulletsLeft > 0) {
-    console.log(bulletsStore.$state.bullets)
     bulletsStore.addBullet({
       id: Date.now(),
       coordinateX: machineGunPosition.$state.machineGunLeft,

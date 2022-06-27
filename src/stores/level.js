@@ -4,7 +4,7 @@ export const useLevelStore = defineStore({
   id: 'level',
 
   state: () => ({
-    level: 0
+    level: 1
   }),
 
   actions: {
@@ -12,7 +12,7 @@ export const useLevelStore = defineStore({
       this.level += 1;
     },
     resetLevel() {
-      this.level = 0;
+      this.level = 1;
     }
   }
 });

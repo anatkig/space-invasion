@@ -1,5 +1,8 @@
 <script setup>
 import { onMounted, reactive } from 'vue';
+import { useLevelStore } from '../../stores/level';
+
+const level = useLevelStore().$state.level;
 
 const { id, randomSize, randomCoordinateX } = defineProps([
   'id',
@@ -11,7 +14,7 @@ const state = reactive({
   invTop: 0,
   randomSize: randomSize,
   randomCoordinateX: randomCoordinateX,
-  speed: 30
+  speed: Math.floor(30/level + 20)
 });
 
 const invTopValue = () => {
