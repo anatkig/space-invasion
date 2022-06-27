@@ -59,15 +59,15 @@ const invadersAttackAndFlipModal = () => {
 };
 
 window.onkeyup = (event) => {
-  let counter = 0;
+
   if (event.key === ' ' && bulletsLeft.$state.bulletsLeft > 0) {
+    console.log(bulletsStore.$state.bullets)
     bulletsStore.addBullet({
-      id: counter,
+      id: Date.now(),
       coordinateX: machineGunPosition.$state.machineGunLeft,
       coordinateY: document.querySelector('.battle-field').offsetHeight - 60
     });
     bulletsLeft.subtractBulletsLeft(1);
-    counter++;
   }
 
   if (event.key === 'Enter') {

@@ -21,38 +21,36 @@ onMounted(() => {
   bulletLogic();
 });
 
+
+
 const bulletLogic = () => {
+  const fieldWidth = document.querySelector('.battle-field')?.offsetWidth;
+  const coordinateXInPX = Math.round(fieldWidth/100*coordinateX);
   const topMovement = setInterval(() => {
     bullTop.bullTop -= 3;
-    const bullets = computed(() =>
-      Array.from(document.querySelectorAll('.bullet'))
-    );
+
     const invaders = computed(() =>
       Array.from(document.querySelectorAll('.invader'))
     );
-
-    bullets.value.forEach((bullet) =>
-      invaders.value.forEach((invader) => {
+     invaders.value.forEach((invader) => {
         if (
-          bullet.offsetTop >= invader.offsetTop &&
-          bullet.offsetTop <= invader.offsetTop + invader.offsetHeight &&
-          bullet.offsetLeft >= invader.offsetLeft &&
-          bullet.offsetLeft <= invader.offsetLeft + invader.offsetWidth
+          bullTop.bullTop >= invader.offsetTop &&
+          bullTop.bullTop <= invader.offsetTop + invader.offsetHeight &&
+          coordinateXInPX >= invader.offsetLeft &&
+          coordinateXInPX <= invader.offsetLeft + invader.offsetWidth
         ) {
-          bulletsStore.removeBullet(bullet.id);
+          bulletsStore.removeBullet(id);
           invadersStore.removeInvader(invader.id);
           invadersDestroyedStore.addInvadersDestroyed(1);
           if (invadersDestroyedStore.$state.invadersDestroyed % 10 === 0) {
             levelStore.addLevel();
             bulletsLeftStore.addBulletsLeft(100);
           }
-        }
-      })
-    );
+  }});
 
     if (bullTop.bullTop <= -10) {
       clearInterval(topMovement);
-      bullets.value.length && bulletsStore.removeBullet(bullets.value[0].id);
+      bulletsStore.removeBullet(id);
     }
   }, 1);
 };

@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, reactive, computed } from 'vue';
+import { onMounted, reactive } from 'vue';
 
 const { id, randomSize, randomCoordinateX } = defineProps([
   'id',
