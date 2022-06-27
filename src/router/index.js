@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import AboutView from "../views/AboutView.vue";
 import InfoView from "../views/InfoView.vue";
+import HallOfRecords from "../views/HallOfRecords.vue";
 import { aim, rules } from "../data/info.js";
 
 const router = createRouter({
@@ -28,6 +29,11 @@ const router = createRouter({
       name: "rules",
       component: InfoView,
       props: { pageContent: rules },
+    },
+    {
+      path: "/hall",
+      name: "hallOfRecords",
+      component: HallOfRecords,
     },
   ],
 });

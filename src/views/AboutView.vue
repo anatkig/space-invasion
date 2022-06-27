@@ -18,7 +18,7 @@ import { RouterLink } from 'vue-router';
       <RouterLink to="/rules">
         <button class="info-item">How to Play</button></RouterLink
       >
-       <RouterLink to="/game">
+       <RouterLink to="/hall">
       <button class="info-item">Hall of Records</button>
     </RouterLink>
     </div>
