@@ -1,6 +1,7 @@
 {
   "name": "space-invasion",
   "version": "0.0.0",
+  "homepage": "https://anatkig.github.io/button-game",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
