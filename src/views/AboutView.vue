@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router';
 </script>
 <template>
 
-  <div class="about">
+  <div class="about view-style">
     <h1>Space Invasion</h1>
     <div class = "main-button-container">
          <RouterLink to="/game">
@@ -30,11 +30,12 @@ import { RouterLink } from 'vue-router';
 <style>
 .about {
   text-align: center;
-  background-color: beige;
-  height: 100vh;
   max-height: 100vh;
   box-sizing: border-box;
- 
+}
+.view-style{
+  background-color: beige;
+   height: 100vh;
 }
 .main-button-container {
  display: flex;

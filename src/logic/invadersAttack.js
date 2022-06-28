@@ -60,6 +60,22 @@ const invadersAttack = (
             modalText.value = 'Game Over!';
             modal.value = !modal.value;
             startPauseResume.value = 'Restart';
+
+            const recordInfo = {
+              time: new Date().getDate(),
+              level: level.$state.level,
+              invadersKilled: invadersDestroyed.$state.invadersDestroyed
+
+            }
+
+            const records = JSON.parse(localStorage.getItem("records"));
+
+            if(!records) {
+            localStorage.setItem("records",JSON.stringify([recordInfo]))
+            } else {
+              const recordsTotal = [...records, recordInfo].sort((a,b)=>a.level-b.level);
+              localStorage.setItem("records", JSON.stringify(recordsTotal.slice(0,10)));
+            }
           }
         }
       }

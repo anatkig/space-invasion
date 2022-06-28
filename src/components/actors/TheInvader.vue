@@ -21,7 +21,7 @@ const state = reactive({
 
 const invTopValue = () => {
   const topMovement = setInterval(() => {
-    if (document.querySelector('.pause-button').innerHTML === 'Pause') {
+    if (document.querySelector('.pause-button')?.innerHTML === 'Pause') {
       state.invTop += 1;
 
       if (

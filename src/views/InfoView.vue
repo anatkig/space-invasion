@@ -4,7 +4,7 @@ const { pageContent } = defineProps(['pageContent']);
 </script>
 
 <template>
-  <div class="aim">
+  <div class="aim view-style">
     <div>
       <RouterLink to="/">
         <div class="arrow" />
