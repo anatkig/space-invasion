@@ -6,7 +6,8 @@
     "build": "vite build",
     "preview": "vite preview --port 5050",
     "test:unit": "vitest --environment jsdom",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
     "pinia": "^2.0.11",
@@ -14,6 +15,7 @@
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
+    "execa": "latest",
     "@rushstack/eslint-patch": "^1.1.0",
     "@vitejs/plugin-vue": "^2.2.2",
     "@vue/eslint-config-prettier": "^7.0.0",
