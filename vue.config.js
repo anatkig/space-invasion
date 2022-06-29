@@ -1,3 +1,5 @@
 module.exports = {
-    publicPath: '/space-invasion/'
+  publicPath: process.env.NODE_ENV === 'production'
+  ? '/space-invasion/'
+  : '/'
   }
