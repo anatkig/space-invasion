@@ -16,7 +16,7 @@ const state = reactive({
       <h2>To the Main Page</h2>
     </RouterLink>
     <div class="records">
-      <h3>Top Ten Best Results</h3>
+      <h2>Top Ten Best Results</h2>
       <table>
         <thead>
           <tr>
@@ -46,7 +46,23 @@ const state = reactive({
   align-items: center;
 }
 .records {
-
+  margin: 3%;
+}
+.records h2 {
+  width:100%;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 900;
+}
+.records td,th {
+  text-align: center;
+  border: solid black 1px;
+  padding: 5px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.records th {
+  font-weight: 700;
 }
 
 .arrow {
