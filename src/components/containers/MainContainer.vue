@@ -5,6 +5,7 @@ import TheMachineGun from '../../components/actors/TheMachineGun.vue';
 import TheBullet from '../../components/actors/TheBullet.vue';
 import Theinvader from '../../components/actors/TheInvader.vue';
 import TheModal from '../containers/TheModal.vue';
+import TheStranger from '../../components/actors/TheStranger.vue';
 import { useBulletsStore } from '../../stores/bullets.js';
 import { useMachineGunPositionStore } from '../../stores/machineGunPosition';
 import { useInvadersStore } from '../../stores/invaders';
@@ -127,6 +128,7 @@ const clickHandler = (event) => {
   <div class="main-container" @mouseup="clickHandler">
     <div class="main-container_inner-layer">
       <div class="battle-field">
+        <TheStranger />
         <TheModal v-show="modal" :text="modalText" @flip-modal="invadersAttackAndFlipModal" />
         <TheMachineGun />
         <TheBullet v-for="item in bulletsStore.$state.bullets" :key="item.id" :coordinateX="item.coordinateX"
