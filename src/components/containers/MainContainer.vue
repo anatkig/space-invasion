@@ -61,18 +61,16 @@ const invadersAttackAndFlipModal = () => {
 
 window.onkeyup = (event) => {
 
-
-
   if (event.key === 'Enter') {
     invadersAttackAndFlipModal();
   }
 
   if (event.key === "ArrowLeft") {
     clearInterval(machineGunInterval.value.ArrowLeft);
-    delete machineGunInterval.value.ArrowLeft;
-  } else if(event.key === "ArrowRight") {
+    machineGunInterval.value.ArrowLeft = null;
+  } else if (event.key === "ArrowRight") {
     clearInterval(machineGunInterval.value.ArrowRight);
-     delete machineGunInterval.value.ArrowRight;
+    machineGunInterval.value.ArrowRight = null;
   }
 };
 
@@ -87,32 +85,31 @@ window.onkeydown = (event) => {
     bulletsLeft.subtractBulletsLeft(1);
   }
 
- if (event.key === "ArrowLeft") {
-
-  if(machineGunInterval.value.ArrowRight) {
-     clearInterval(machineGunInterval.value.ArrowRight);
-  }
-   if(!machineGunInterval.value.ArrowLeft) {
+  if (event.key === "ArrowLeft") {
+    if (machineGunInterval.value.ArrowRight) {
+      clearInterval(machineGunInterval.value.ArrowRight);
+    }
+    if (!machineGunInterval.value.ArrowLeft) {
       const interval = setInterval(() => {
-        machineGunPosition.setPosition(-1);
-        
+        machineGunPosition.setPosition(-0.5);
+
 
       }, 20)
-       machineGunInterval.value["ArrowLeft"] = interval;
-   }
+      machineGunInterval.value["ArrowLeft"] = interval;
+    }
   } else if (event.key === "ArrowRight") {
 
-    if(machineGunInterval.value.ArrowLeft) {
-     clearInterval(machineGunInterval.value.ArrowLeft);
-  
+    if (machineGunInterval.value.ArrowLeft) {
+      clearInterval(machineGunInterval.value.ArrowLeft);
+
     }
-     if(!machineGunInterval.value.ArrowRight) {
+    if (!machineGunInterval.value.ArrowRight) {
       const interval = setInterval(() => {
-        machineGunPosition.setPosition(1);
-       
+        machineGunPosition.setPosition(0.5);
+
       }, 20)
-       machineGunInterval.value["ArrowRight"] = interval;
-     }
+      machineGunInterval.value["ArrowRight"] = interval;
+    }
   }
 };
 const clickHandler = (event) => {
