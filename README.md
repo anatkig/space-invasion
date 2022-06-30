@@ -2,9 +2,9 @@
 
 \*\*\*What to do next
 
-1.speed doesn't seem to increase when levels inscrease
+
 2.Run and shoot
-4.bollets replenishments
+4.bullets replenishments
 5.bomb which kills you if shot
 33.continue the previous task - try to align machine gun and invader positionX to simplify
 3.Life has been taken window appears incorrectly when it is already over

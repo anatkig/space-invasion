@@ -1,15 +1,7 @@
 <script setup>
-import { useMachineGunPositionStore } from "../../stores/machineGunPosition";
+import { useMachineGunPositionStore } from '../../stores/machineGunPosition';
 
 const machineGunPosition = useMachineGunPositionStore();
-
-window.onkeydown = (event) => {
-  if (event.key === "ArrowLeft") {
-    machineGunPosition.setPosition(-1);
-  } else if (event.key === "ArrowRight") {
-    machineGunPosition.setPosition(1);
-  }
-};
 </script>
 
 <template>

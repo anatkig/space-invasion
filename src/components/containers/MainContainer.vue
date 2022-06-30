@@ -25,6 +25,7 @@ const level = useLevelStore();
 const modal = ref(true);
 const modalText = ref('Greetings Commander!');
 const startPauseResume = ref('Start');
+const machineGunInterval = ref([]);
 
 const invadersAttackAndFlipModal = () => {
   modal.value = !modal.value;
@@ -72,6 +73,39 @@ window.onkeyup = (event) => {
   if (event.key === 'Enter') {
     invadersAttackAndFlipModal();
   }
+
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    clearInterval(machineGunInterval.value.pop());
+
+  }
+};
+
+window.onkeydown = (event) => {
+  if (event.key === "ArrowLeft") {
+    clearInterval(machineGunInterval.value.pop());
+
+    if (!machineGunInterval.value.length) {
+
+      const interval = setInterval(() => {
+        machineGunPosition.setPosition(-1);
+        
+
+      }, 20)
+      machineGunInterval.value.push(interval);
+    }
+  } else if (event.key === "ArrowRight") {
+
+    clearInterval(machineGunInterval.value.pop());
+
+    if (!machineGunInterval.value.length) {
+
+      const interval = setInterval(() => {
+        machineGunPosition.setPosition(1);
+       
+      }, 20)
+       machineGunInterval.value.push(interval);
+    }
+  }
 };
 const clickHandler = (event) => {
   if (event.target.classList.value.includes('pause-button')) {
@@ -88,27 +122,13 @@ const clickHandler = (event) => {
   <div class="main-container" @mouseup="clickHandler">
     <div class="main-container_inner-layer">
       <div class="battle-field">
-        <TheModal
-          v-show="modal"
-          :text="modalText"
-          @flip-modal="invadersAttackAndFlipModal"
-        />
+        <TheModal v-show="modal" :text="modalText" @flip-modal="invadersAttackAndFlipModal" />
         <TheMachineGun />
-        <TheBullet
-          v-for="item in bulletsStore.$state.bullets"
-          :key="item.id"
-          :coordinateX="item.coordinateX"
-          :id="item.id"
-        />
-        <Theinvader
-          v-for="invader in invadersStore.$state.invaders"
-          :key="invader.id"
-          :id="invader.id"
-          :randomCoordinateX="invader.randomCoordinateX"
-          :randomSize="invader.randomSize"
-          :borderRadius="invader.borderRadius"
-          :backgroundColor="invader.backgroundColor"
-        />
+        <TheBullet v-for="item in bulletsStore.$state.bullets" :key="item.id" :coordinateX="item.coordinateX"
+          :id="item.id" />
+        <Theinvader v-for="invader in invadersStore.$state.invaders" :key="invader.id" :id="invader.id"
+          :randomCoordinateX="invader.randomCoordinateX" :randomSize="invader.randomSize"
+          :borderRadius="invader.borderRadius" :backgroundColor="invader.backgroundColor" />
       </div>
       <ControlPanel :startPauseResume="startPauseResume" />
     </div>
@@ -122,6 +142,7 @@ const clickHandler = (event) => {
   border-width: 3px;
   border-color: black;
 }
+
 .main-container_inner-layer {
   height: 100%;
   border-style: solid;
@@ -129,6 +150,7 @@ const clickHandler = (event) => {
   border-color: red;
   background-color: black;
 }
+
 .battle-field {
   height: 90%;
   overflow: hidden;
