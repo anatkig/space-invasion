@@ -25,7 +25,7 @@ const level = useLevelStore();
 const modal = ref(true);
 const modalText = ref('Greetings Commander!');
 const startPauseResume = ref('Start');
-const machineGunInterval = ref([]);
+const machineGunInterval = ref({});
 
 const invadersAttackAndFlipModal = () => {
   modal.value = !modal.value;
@@ -61,6 +61,23 @@ const invadersAttackAndFlipModal = () => {
 
 window.onkeyup = (event) => {
 
+
+
+  if (event.key === 'Enter') {
+    invadersAttackAndFlipModal();
+  }
+
+  if (event.key === "ArrowLeft") {
+    clearInterval(machineGunInterval.value.ArrowLeft);
+    delete machineGunInterval.value.ArrowLeft;
+  } else if(event.key === "ArrowRight") {
+    clearInterval(machineGunInterval.value.ArrowRight);
+     delete machineGunInterval.value.ArrowRight;
+  }
+};
+
+window.onkeydown = (event) => {
+
   if (event.key === ' ' && bulletsLeft.$state.bulletsLeft > 0) {
     bulletsStore.addBullet({
       id: Date.now(),
@@ -70,41 +87,32 @@ window.onkeyup = (event) => {
     bulletsLeft.subtractBulletsLeft(1);
   }
 
-  if (event.key === 'Enter') {
-    invadersAttackAndFlipModal();
+ if (event.key === "ArrowLeft") {
+
+  if(machineGunInterval.value.ArrowRight) {
+     clearInterval(machineGunInterval.value.ArrowRight);
   }
-
-  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-    clearInterval(machineGunInterval.value.pop());
-
-  }
-};
-
-window.onkeydown = (event) => {
-  if (event.key === "ArrowLeft") {
-    clearInterval(machineGunInterval.value.pop());
-
-    if (!machineGunInterval.value.length) {
-
+   if(!machineGunInterval.value.ArrowLeft) {
       const interval = setInterval(() => {
         machineGunPosition.setPosition(-1);
         
 
       }, 20)
-      machineGunInterval.value.push(interval);
-    }
+       machineGunInterval.value["ArrowLeft"] = interval;
+   }
   } else if (event.key === "ArrowRight") {
 
-    clearInterval(machineGunInterval.value.pop());
-
-    if (!machineGunInterval.value.length) {
-
+    if(machineGunInterval.value.ArrowLeft) {
+     clearInterval(machineGunInterval.value.ArrowLeft);
+  
+    }
+     if(!machineGunInterval.value.ArrowRight) {
       const interval = setInterval(() => {
         machineGunPosition.setPosition(1);
        
       }, 20)
-       machineGunInterval.value.push(interval);
-    }
+       machineGunInterval.value["ArrowRight"] = interval;
+     }
   }
 };
 const clickHandler = (event) => {
