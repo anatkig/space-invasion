@@ -30,7 +30,7 @@ const componetLifecycle = () => {
             state.dislay = "block";
         }
 
-    }, 10)
+    }, 1000)
 }
 
 const invTopValue = () => {
