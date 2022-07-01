@@ -1,12 +1,14 @@
 <script setup>
-import { onMounted, onUpdated, reactive } from 'vue';
+import { onMounted, reactive } from 'vue';
 import { useLevelStore } from '../../stores/level';
 import { useLivesStore } from '../../stores/lives';
+import { useBulletsLeftStore } from '../../stores/bulletsLeft';
 
 import cartridge from '../../assets/cartridge.svg'
 
 const level = useLevelStore().$state.level;
 const lives = useLivesStore().$state.lives;
+const bulletsLeft = useBulletsLeftStore();
 
 
 const state = reactive({
@@ -17,8 +19,8 @@ const state = reactive({
 });
 
 const componetLifecycle = () => {
-    state.randomCoordinateX = Math.random() *
-        (document.querySelector('.battle-field')?.offsetWidth - 70);
+    state.randomCoordinateX = Math.floor(Math.random() *
+        (document.querySelector('.battle-field')?.offsetWidth - 70));
     const interval = setInterval(() => {
         const appear = Math.floor(Math.random() * 100);
 
@@ -28,7 +30,7 @@ const componetLifecycle = () => {
             state.dislay = "block";
         }
 
-    }, 1000)
+    }, 10)
 }
 
 const invTopValue = () => {
@@ -36,7 +38,29 @@ const invTopValue = () => {
     const topMovement = setInterval(() => {
         if (document.querySelector('.pause-button')?.innerHTML === 'Pause') {
             state.invTop += 1;
+            const bullets =
+                Array.from(document.querySelectorAll('.bullet'));
 
+            const hittingBullet = bullets?.find(bullet => {
+                const bulletXInPx = bullet.offsetLeft;
+
+                if (bulletXInPx - 15 >= state.randomCoordinateX && bulletXInPx <= state.randomCoordinateX + 70) {
+                    return bullet;
+                } else return undefined;
+            });
+
+            if (hittingBullet) {
+                if (hittingBullet.offsetTop >= state.invTop &&
+                    hittingBullet.offsetTop <= state.invTop + 100) {
+                    clearInterval(topMovement);
+                    state.dislay = "none";
+                    state.invTop = 0;
+                    if (lives !== 0) {
+                        componetLifecycle();
+                    }
+                    bulletsLeft.addBulletsLeft(100);
+                }
+            }
             if (
                 state.invTop ===
                 document.querySelector('.battle-field').offsetHeight + 100 || lives === 0
