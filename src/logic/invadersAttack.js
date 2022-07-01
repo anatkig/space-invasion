@@ -24,16 +24,16 @@ const invadersAttack = (
         const randomSize = Math.floor(Math.random() * 30) + 20;
         const randomCoordinateX = Math.floor(
           Math.random() *
-            (document.querySelector('.battle-field')?.offsetWidth - randomSize)
+          (document.querySelector('.battle-field')?.offsetWidth - randomSize)
         );
-         const borderRadius = Math.floor(level.$state.level%6*10);
-         const backgroundColors = ["green","yellow","blue","orange","red"]
+        const borderRadius = Math.floor(level.$state.level % 6 * 10);
+        const backgroundColors = ["green", "yellow", "blue", "orange", "red"]
         invadersStore.addInvader({
           id: Date.now(),
           randomSize: randomSize,
           randomCoordinateX: randomCoordinateX,
-          borderRadius:borderRadius,
-          backgroundColor: backgroundColors[level.$state.level%4]
+          borderRadius: borderRadius,
+          backgroundColor: backgroundColors[level.$state.level % 4]
         });
         const invaders = computed(() =>
           Array.from(document.querySelectorAll('.invader'))
@@ -70,11 +70,11 @@ const invadersAttack = (
 
             const records = JSON.parse(localStorage.getItem("records"));
 
-            if(!records) {
-            localStorage.setItem("records",JSON.stringify([recordInfo]))
+            if (!records) {
+              localStorage.setItem("records", JSON.stringify([recordInfo]))
             } else {
-              const recordsTotal = [...records, recordInfo].sort((a,b)=>a.level-b.level);
-              localStorage.setItem("records", JSON.stringify(recordsTotal.slice(0,10)));
+              const recordsTotal = [...records, recordInfo].sort((a, b) => b.level - a.level);
+              localStorage.setItem("records", JSON.stringify(recordsTotal.slice(0, 10)));
             }
           }
         }

@@ -28,7 +28,7 @@ const state = reactive({
         </thead>
         <tbody>
           <tr v-for="(record, index) in state.records">
-            <td>{{ index + 1}}</td>
+            <td>{{ index + 1 }}</td>
             <td>{{ record.time }}</td>
             <td>{{ record.level }}</td>
             <td>{{ record.invadersKilled }}</td>
@@ -45,22 +45,27 @@ const state = reactive({
   flex-direction: column;
   align-items: center;
 }
+
 .records {
   margin: 3%;
 }
+
 .records h2 {
-  width:100%;
+  width: 100%;
   text-decoration: none;
   text-align: center;
   font-weight: 900;
 }
-.records td,th {
+
+.records td,
+th {
   text-align: center;
   border: solid black 1px;
   padding: 5px;
   font-size: 1.1rem;
   font-weight: 500;
 }
+
 .records th {
   font-weight: 700;
 }

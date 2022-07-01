@@ -93,8 +93,6 @@ window.onkeydown = (event) => {
     if (!machineGunInterval.value.ArrowLeft) {
       const interval = setInterval(() => {
         machineGunPosition.setPosition(-0.5);
-
-
       }, 20)
       machineGunInterval.value["ArrowLeft"] = interval;
     }
@@ -102,12 +100,10 @@ window.onkeydown = (event) => {
 
     if (machineGunInterval.value.ArrowLeft) {
       clearInterval(machineGunInterval.value.ArrowLeft);
-
     }
     if (!machineGunInterval.value.ArrowRight) {
       const interval = setInterval(() => {
         machineGunPosition.setPosition(0.5);
-
       }, 20)
       machineGunInterval.value["ArrowRight"] = interval;
     }
