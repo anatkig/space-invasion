@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 
 (async () => {
-    const {execa} = await import("execa");
-const fs = require("fs");
+  const { execa } = await import("execa");
+  const fs = require("fs");
   try {
     await execa("git", ["checkout", "--orphan", "gh-pages"]);
     // eslint-disable-next-line no-console
@@ -14,7 +14,6 @@ const fs = require("fs");
     await execa("git", ["--work-tree", folderName, "commit", "-m", "gh-pages"]);
     console.log("Pushing to gh-pages...");
     await execa("git", ["push", "origin", "HEAD:gh-pages", "--force"]);
-    await execa("del", ["-r", folderName]);
     await execa("git", ["checkout", "-f", "master"]);
     await execa("git", ["branch", "-D", "gh-pages"]);
     console.log("Successfully deployed, check your settings");
