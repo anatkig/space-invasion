@@ -5,26 +5,24 @@ import { RouterLink } from 'vue-router';
 
   <div class="about view-style">
     <h1>Space Invasion</h1>
-    <div class = "main-button-container">
-         <RouterLink to="/game">
-      <button class="info-item play">Play</button>
-    </RouterLink>
-  
-    <div class="info">
-      <RouterLink to="/aim"
-        ><button class="info-item">Aim of the Game</button></RouterLink
-      >
+    <div class="main-button-container">
+      <RouterLink to="/game">
+        <button class="info-item play">Play</button>
+      </RouterLink>
 
-      <RouterLink to="/rules">
-        <button class="info-item">How to Play</button></RouterLink
-      >
-       <RouterLink to="/hall">
-      <button class="info-item">Hall of Records</button>
-    </RouterLink>
+      <div class="info">
+        <RouterLink to="/aim"><button class="info-item">Aim of the Game</button></RouterLink>
+
+        <RouterLink to="/rules">
+          <button class="info-item">How to Play</button>
+        </RouterLink>
+        <RouterLink to="/hall">
+          <button class="info-item">Hall of Records</button>
+        </RouterLink>
+      </div>
+
     </div>
- 
   </div>
-    </div>
 </template>
 
 <style>
@@ -33,16 +31,19 @@ import { RouterLink } from 'vue-router';
   max-height: 100vh;
   box-sizing: border-box;
 }
-.view-style{
+
+.view-style {
   background-color: beige;
-   height: 100vh;
+  height: 100vh;
 }
+
 .main-button-container {
- display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 10% 0;
 }
+
 .about h1 {
   font-size: 3rem;
   font-weight: 700;
@@ -52,8 +53,9 @@ import { RouterLink } from 'vue-router';
   color: rgb(250, 96, 96);
   background-color: rgb(216, 216, 192);
 }
+
 .info {
-  position:static;
+  position: static;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -70,12 +72,15 @@ import { RouterLink } from 'vue-router';
   font-weight: 700;
   position: static;
 }
+
 .info-item:hover {
   box-shadow: 0 0 6px 6px gray;
 }
+
 .info a {
   all: unset;
 }
+
 .play {
   width: 40%;
   background-color: red;

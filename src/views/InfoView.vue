@@ -25,6 +25,7 @@ const { pageContent } = defineProps(['pageContent']);
   align-items: center;
   margin: auto;
 }
+
 .arrow {
   width: 20px;
   height: 20px;
@@ -33,8 +34,13 @@ const { pageContent } = defineProps(['pageContent']);
   border-bottom: solid 1px black;
   transform: rotate(45deg);
 }
+
 h2 {
   display: inline-block;
   text-decoration: underline;
+}
+
+.content {
+  margin: 3%;
 }
 </style>
