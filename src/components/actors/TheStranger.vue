@@ -1,9 +1,12 @@
 <script setup>
 import { onMounted, onUpdated, reactive } from 'vue';
 import { useLevelStore } from '../../stores/level';
+import { useLivesStore } from '../../stores/lives';
+
 import cartridge from '../../assets/cartridge.svg'
 
 const level = useLevelStore().$state.level;
+const lives = useLivesStore().$state.lives;
 
 
 const state = reactive({
@@ -36,12 +39,15 @@ const invTopValue = () => {
 
             if (
                 state.invTop ===
-                document.querySelector('.battle-field').offsetHeight + 100
+                document.querySelector('.battle-field').offsetHeight + 100 || lives === 0
             ) {
                 clearInterval(topMovement);
                 state.dislay = "none";
                 state.invTop = 0;
-                componetLifecycle();
+                if (lives !== 0) {
+                    componetLifecycle();
+                }
+
             }
         }
     }, 10);
