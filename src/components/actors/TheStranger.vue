@@ -44,14 +44,14 @@ const invTopValue = () => {
             const hittingBullet = bullets?.find(bullet => {
                 const bulletXInPx = bullet.offsetLeft;
 
-                if (bulletXInPx - 15 >= state.randomCoordinateX && bulletXInPx <= state.randomCoordinateX + 70) {
+                if (bulletXInPx + 15 >= state.randomCoordinateX && bulletXInPx <= state.randomCoordinateX + 70) {
                     return bullet;
                 } else return undefined;
             });
 
             if (hittingBullet) {
-                if (hittingBullet.offsetTop >= state.invTop &&
-                    hittingBullet.offsetTop <= state.invTop + 100) {
+                if (hittingBullet.offsetTop > state.invTop &&
+                    hittingBullet.offsetTop < state.invTop + 85) {
                     clearInterval(topMovement);
                     state.dislay = "none";
                     state.invTop = 0;
