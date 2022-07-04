@@ -1,4 +1,3 @@
 # space-invasion
-Vue.js practice game. Still in progress
-
+Vue.js practice game.
 https://anatkig.github.io/space-invasion/
